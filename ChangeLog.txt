@@ -68,6 +68,10 @@ Bugfix
 [*]API Bump to Horns of the Reach (100020)
 [*]Added support for Crusher debuff
 
-0.2.8: DL: 25,775 (01.05.2018) 19:55
+0.2.8: DL: 25,775 (05.01.2018) 19:55
 [*]API Bump to Clockwork City (100021)
 [*]Updated LibAddonMenu to version 2.0 r25 to fix an issue
+
+0.2.9: DL: 30,544 (13.02.2018) 01:24
+[*]Readded siphon spirit tracking
+[*]Added Off Balance and Weakening to trackable Debuffs
