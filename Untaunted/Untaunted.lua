@@ -11,7 +11,7 @@ local TRACKED_ABILITY_DRAIN = 2
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.8"
+Untaunted.version 	= "0.2.9"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -338,7 +338,7 @@ function Untaunted.MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKCRUSHER), -- Siphon Spirit: 41225
+			name = GetString(SI_UNTAUNTED_MENU_TRACKCRUSHER), -- Crusher: 17906
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKCRUSHER_TOOLTIP),
 			default = def.trackedabilities[17906],
 			getFunc = function() return db.trackedabilities[17906] end,
@@ -349,12 +349,45 @@ function Untaunted.MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN), -- Siphon Spirit: 41225
+			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON), -- Siphon Spirit: 41225
+			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP),
+			default = def.trackedabilities[41225],
+			getFunc = function() return db.trackedabilities[41225] end,
+			setFunc = function(value) 
+						db.trackedabilities[41225] = value 
+						Untaunted:RegisterAbilities()
+					  end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN), -- Warhorn: 41225
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP),
 			default = def.trackedabilities[46537],
 			getFunc = function() return db.trackedabilities[46537] end,
 			setFunc = function(value) 
 						db.trackedabilities[46537] = value 
+						Untaunted:RegisterAbilities()
+					  end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE), -- Off Balance: 63003
+			tooltip = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP),
+			default = def.trackedabilities[63003],
+			getFunc = function() return db.trackedabilities[63003] end,
+			setFunc = function(value) 
+						db.trackedabilities[63003] = value 
+						Untaunted:RegisterAbilities()
+					  end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_WEAKENING), -- Off Balance: 63003
+			tooltip = GetString(SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP),
+			default = def.trackedabilities[17945],
+			getFunc = function() return db.trackedabilities[17945] end,
+			setFunc = function(value) 
+						db.trackedabilities[17945] = value 
 						Untaunted:RegisterAbilities()
 					  end,
 		},
@@ -428,7 +461,7 @@ Untaunted.defaults = {
 	["bardirection"]=false, --false=to the left
 	["accountwide"]=true,
 	["trackonlyplayer"]=true,
-	["trackedabilities"]={[38541]=true,[62795]=false,[81519]=false,[68359]=false,[41225]=false,[17906]=false,[46537]=false,}
+	["trackedabilities"]={[38541]=true,[62795]=false,[81519]=false,[68359]=false,[41225]=false,[17906]=false,[46537]=false,[63003]=false,[17945]=false,}
 }
 
 -- Initialization

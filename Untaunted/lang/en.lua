@@ -1,31 +1,44 @@
-﻿-- Menu --
+﻿local strings = {
+	
+	-- Menu --
 
-ZO_CreateStringId("SI_UNTAUNTED_LANG", "en")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_AW_NAME", "Use Accountwide Settings") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP", "If chosen all characters on this account will have the same Settings") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_MOVE_BUTTON", "Move") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP", "Move the taunt frames") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_WINDOW_WIDTH", "Width") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP", "Sets the width of the taunt frames") 
-ZO_CreateStringId("SI_UNTAUNTED_MENU_WINDOW_HEIGHT", "Height")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP", "Sets the height of the taunt frames")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_GROWTH_DIRECTION", "Add Frames Upwards")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_GROWTH_DIRECTION_TOOLTIP", "When selected, new frames are added above the previous ones")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_BAR_DIRECTION", "Invert Timer Bar")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_BAR_DIRECTION_TOOLTIP", "When selected, the timer bar gets reduced to the right")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_SHOWMARKER", "Show Enemy Markers")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP", "Show markers (like group pins) over enemies you engaged in combat")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKONLYPLAYER", "Only PLayer Effects")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP", "Select to track Taunts")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKTAUNT", "Track Taunt")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKTAUNT_TOOLTIP", "Select to track only Player Effects")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKELEDRAIN", "Track Elemental Drain")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKELEDRAIN_TOOLTIP", "Select to track the Elemental Drain debuff")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKINFAETHER", "Track Infallible Aether / Minor Vulnerability")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKINFAETHER_TOOLTIP", "Select to track the Infallible Aether debuff")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKSIPHON", "Track Siphon Spirit")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP", "Select to track the Siphon Spirit debuff")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKCRUSHER", "Track Crusher")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKCRUSHER_TOOLTIP", "Select to track the Crusher debuff")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKWARHORN", "Track Warhorn")
-ZO_CreateStringId("SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP", "Select to track track Warhorn (only for yourself)")
+	SI_UNTAUNTED_LANG = "en", 	-- "en"
+	SI_UNTAUNTED_MENU_AW_NAME = "Use Accountwide Settings", 	-- "Use Accountwide Settings" 
+	SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP = "If chosen all characters on this account will have the same Settings", 	-- "If chosen all characters on this account will have the same Settings" 
+	SI_UNTAUNTED_MENU_MOVE_BUTTON = "Move", 	-- "Move" 
+	SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP = "Move the taunt frames", 	-- "Move the taunt frames" 
+	SI_UNTAUNTED_MENU_WINDOW_WIDTH = "Width", 	-- "Width" 
+	SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP = "Sets the width of the taunt frames", 	-- "Sets the width of the taunt frames" 
+	SI_UNTAUNTED_MENU_WINDOW_HEIGHT = "Height", 	-- "Height"
+	SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP = "Sets the height of the taunt frames", 	-- "Sets the height of the taunt frames"
+	SI_UNTAUNTED_MENU_GROWTH_DIRECTION = "Add Frames Upwards", 	-- "Add Frames Upwards"
+	SI_UNTAUNTED_MENU_GROWTH_DIRECTION_TOOLTIP = "When selected, new frames are added above the previous ones", 	-- "When selected, new frames are added above the previous ones"
+	SI_UNTAUNTED_MENU_BAR_DIRECTION = "Invert Timer Bar", 	-- "Invert Timer Bar"
+	SI_UNTAUNTED_MENU_BAR_DIRECTION_TOOLTIP = "When selected, the timer bar gets reduced to the right", 	-- "When selected, the timer bar gets reduced to the right"
+	SI_UNTAUNTED_MENU_SHOWMARKER = "Show Enemy Markers", 	-- "Show Enemy Markers"
+	SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP = "Show markers (like group pins) over enemies you engaged in combat", 	-- "Show markers (like group pins) over enemies you engaged in combat"
+	SI_UNTAUNTED_MENU_TRACKONLYPLAYER = "Only Player Effects", 	-- "Only Player Effects"
+	SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP = "Select to track only Player Effects", 	-- "Select to track only Player Effects"
+	SI_UNTAUNTED_MENU_TRACKTAUNT = "Track Taunt", 	-- "Track Taunt"
+	SI_UNTAUNTED_MENU_TRACKTAUNT_TOOLTIP = "Select to track Taunts", 	-- "Select to track Taunts"
+	SI_UNTAUNTED_MENU_TRACKELEDRAIN = "Track Elemental Drain", 	-- "Track Elemental Drain"
+	SI_UNTAUNTED_MENU_TRACKELEDRAIN_TOOLTIP = "Select to track the Elemental Drain debuff", 	-- "Select to track the Elemental Drain debuff"
+	SI_UNTAUNTED_MENU_TRACKINFAETHER = "Track Infallible Aether / Minor Vulnerability", 	-- "Track Infallible Aether / Minor Vulnerability"
+	SI_UNTAUNTED_MENU_TRACKINFAETHER_TOOLTIP = "Select to track the Infallible Aether debuff", 	-- "Select to track the Infallible Aether debuff"
+	SI_UNTAUNTED_MENU_TRACKSIPHON = "Track Siphon Spirit", 	-- "Track Siphon Spirit"
+	SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP = "Select to track the Siphon Spirit debuff", 	-- "Select to track the Siphon Spirit debuff"
+	SI_UNTAUNTED_MENU_TRACKCRUSHER = "Track Crusher", 	-- "Track Crusher"
+	SI_UNTAUNTED_MENU_TRACKCRUSHER_TOOLTIP = "Select to track the Crusher debuff", 	-- "Select to track the Crusher debuff"
+	SI_UNTAUNTED_MENU_TRACKWARHORN = "Track Warhorn", 	-- "Track Warhorn"
+	SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP = "Select to track track Warhorn (only for yourself)", 	-- "Select to track track Warhorn (only for yourself)"
+	SI_UNTAUNTED_MENU_OFF_BALANCE = "Track Off Balance", 	-- "Track Warhorn"
+	SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP = "Select to track track Off Balance", 	-- "Select to track track Off Balance"
+	SI_UNTAUNTED_MENU_WEAKENING = "Track Weakening", 	-- "Track Warhorn"
+	SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP = "Select to track track Weakening", 	-- "Select to track track Off Balance"
+
+}
+
+for stringId, stringValue in pairs(strings) do
+	ZO_CreateStringId(stringId, stringValue)
+	SafeAddVersion(stringId, 1)
+end
