@@ -75,3 +75,7 @@ Bugfix
 0.2.9: DL: 30,544 (13.02.2018) 01:24
 [*]Readded siphon spirit tracking
 [*]Added Off Balance and Weakening to trackable Debuffs
+
+0.2.10: DL: 30,544 (13.02.2018) 01:24
+[*]fixed tracking for Siphon Spirit and added tracking for Quick Siphon
+[*]added tracking for Off Balance Immunity

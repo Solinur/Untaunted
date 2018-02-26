@@ -142,9 +142,11 @@ end
 
 -- EVENT_EFFECT_CHANGED (eventCode, changeType, effectSlot, effectName, unitTag, beginTime, endTime, stackCount, iconName, buffType, effectType, abilityType, statusEffectType, unitName, unitId, abilityId, sourceType)  
 function Untaunted.onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _,  _,  effectType, _,  _,  unitName, unitId, abilityId, sourceType) 
-	Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %s (%s)", changeType,effectType,beginTime,endTime,GetAbilityName(abilityId),unitName)
+
+	Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %d (%s)", changeType, effectType, beginTime, endTime, GetAbilityName(abilityId), unitName)
 	Print("Eval: %s and %s",tostring(changeType~=1 and changeType~=2 and changeType~=3),tostring(effectType~=2 and effectType~=1))
-	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3) then return end
+	
+	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=102771) then return end
 	local key = Untaunted.tauntlist[unitId..","..abilityId]
 	if changeType==1 or changeType==3 then 
 		if key == nil then 
@@ -349,18 +351,19 @@ function Untaunted.MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON), -- Siphon Spirit: 41225
+			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON), -- Siphon Spirit: 88634
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP),
-			default = def.trackedabilities[41225],
-			getFunc = function() return db.trackedabilities[41225] end,
+			default = def.trackedabilities[88634],
+			getFunc = function() return db.trackedabilities[88634] end,
 			setFunc = function(value) 
-						db.trackedabilities[41225] = value 
+						db.trackedabilities[88634] = value 
+						db.trackedabilities[88604] = value
 						Untaunted:RegisterAbilities()
 					  end,
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN), -- Warhorn: 41225
+			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN), -- Warhorn: 46537
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP),
 			default = def.trackedabilities[46537],
 			getFunc = function() return db.trackedabilities[46537] end,
@@ -382,7 +385,18 @@ function Untaunted.MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_WEAKENING), -- Off Balance: 63003
+			name = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY), -- Off Balance Immunity: 102771 (target buff)
+			tooltip = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY_TOOLTIP),
+			default = def.trackedabilities[102771],
+			getFunc = function() return db.trackedabilities[102771] end,
+			setFunc = function(value) 
+						db.trackedabilities[102771] = value 
+						Untaunted:RegisterAbilities()
+					  end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_WEAKENING), -- Off Balance: 17945
 			tooltip = GetString(SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP),
 			default = def.trackedabilities[17945],
 			getFunc = function() return db.trackedabilities[17945] end,
@@ -439,7 +453,7 @@ function Untaunted:RegisterAbilities()
 			regs=regs+1
 			em:RegisterForEvent(name.."ability"..k, EVENT_EFFECT_CHANGED, self.onTaunt)
 			local addfilter = {}
-			if db.trackonlyplayer then
+			if db.trackonlyplayer and k~=102771 then
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
 			end
@@ -461,7 +475,7 @@ Untaunted.defaults = {
 	["bardirection"]=false, --false=to the left
 	["accountwide"]=true,
 	["trackonlyplayer"]=true,
-	["trackedabilities"]={[38541]=true,[62795]=false,[81519]=false,[68359]=false,[41225]=false,[17906]=false,[46537]=false,[63003]=false,[17945]=false,}
+	["trackedabilities"]={[38541]=true,[62795]=false,[81519]=false,[68359]=false,[88604]=false,[88634]=false,[17906]=false,[46537]=false,[63003]=false,[102771]=false,[17945]=false,}
 }
 
 -- Initialization

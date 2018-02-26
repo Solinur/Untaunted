@@ -33,6 +33,8 @@
 	SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP = "Select to track track Warhorn (only for yourself)", 	-- "Select to track track Warhorn (only for yourself)"
 	SI_UNTAUNTED_MENU_OFF_BALANCE = "Track Off Balance", 	-- "Track Warhorn"
 	SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP = "Select to track track Off Balance", 	-- "Select to track track Off Balance"
+	SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY = "Track Off Balance Immunity", 	-- "Track Warhorn"
+	SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY_TOOLTIP = "Select to track track Off Balance Immunity", 	-- "Select to track track Off Balance"
 	SI_UNTAUNTED_MENU_WEAKENING = "Track Weakening", 	-- "Track Warhorn"
 	SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP = "Select to track track Weakening", 	-- "Select to track track Off Balance"
 
