@@ -4,8 +4,6 @@ local db,lastanchor
 local dx = 1/GetSetting(SETTING_TYPE_UI, UI_SETTING_CUSTOM_SCALE) --Get UI Scale to draw thin lines correctly
 UNTAUNTED_UI_SCALE = dx
 local TIMER_UPDATE_RATE = 200
-local TRACKED_ABILITY_TAUNT = 1
-local TRACKED_ABILITY_DRAIN = 2
 
 -- Addon Namespace
 Untaunted = Untaunted or {}
