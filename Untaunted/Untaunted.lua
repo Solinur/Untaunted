@@ -11,6 +11,10 @@ local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
 Untaunted.version 	= "0.2.9"
 
+local newapi = GetAPIVersion() > 100022
+
+local ID_ELEDRAIN = newapi and 62787 or 62795
+
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
 	df("[%s] %s", Untaunted.name, message:format(...))
@@ -317,10 +321,10 @@ function Untaunted.MakeMenu()
 			type = "checkbox",
 			name = GetString(SI_UNTAUNTED_MENU_TRACKELEDRAIN), -- Elemental Drain: 62795
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKELEDRAIN_TOOLTIP),
-			default = def.trackedabilities[62795],
-			getFunc = function() return db.trackedabilities[62795] end,
+			default = def.trackedabilities[ID_ELEDRAIN],
+			getFunc = function() return db.trackedabilities[ID_ELEDRAIN] end,
 			setFunc = function(value) 
-						db.trackedabilities[62795] = value 
+						db.trackedabilities[ID_ELEDRAIN] = value 
 						Untaunted:RegisterAbilities()
 					  end,
 		},
@@ -473,7 +477,7 @@ Untaunted.defaults = {
 	["bardirection"]=false, --false=to the left
 	["accountwide"]=true,
 	["trackonlyplayer"]=true,
-	["trackedabilities"]={[38541]=true,[62795]=false,[81519]=false,[68359]=false,[88604]=false,[88634]=false,[17906]=false,[46537]=false,[63003]=false,[102771]=false,[17945]=false,}
+	["trackedabilities"]={[38541]=true,[ID_ELEDRAIN]=false,[81519]=false,[68359]=false,[88604]=false,[88634]=false,[17906]=false,[46537]=false,[63003]=false,[102771]=false,[17945]=false,}
 }
 
 -- Initialization
