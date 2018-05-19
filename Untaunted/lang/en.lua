@@ -13,6 +13,8 @@
 	SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP = "Sets the height of the taunt frames", 	-- "Sets the height of the taunt frames"
 	SI_UNTAUNTED_MENU_GROWTH_DIRECTION = "Add Frames Upwards", 	-- "Add Frames Upwards"
 	SI_UNTAUNTED_MENU_GROWTH_DIRECTION_TOOLTIP = "When selected, new frames are added above the previous ones", 	-- "When selected, new frames are added above the previous ones"
+	SI_UNTAUNTED_MENU_MAX_BARS = "Maximum Rows", 	-- "Maximum Rows"
+	SI_UNTAUNTED_MENU_MAX_BARS_TOOLTIP = "Maximum number of rows to show", 	-- "Maximum number of rows to show"
 	SI_UNTAUNTED_MENU_BAR_DIRECTION = "Invert Timer Bar", 	-- "Invert Timer Bar"
 	SI_UNTAUNTED_MENU_BAR_DIRECTION_TOOLTIP = "When selected, the timer bar gets reduced to the right", 	-- "When selected, the timer bar gets reduced to the right"
 	SI_UNTAUNTED_MENU_SHOWMARKER = "Show Enemy Markers", 	-- "Show Enemy Markers"
