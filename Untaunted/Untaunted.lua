@@ -14,9 +14,13 @@ local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
 Untaunted.version 	= "0.2.11"
 
-local newapi = GetAPIVersion() > 100022
+--local newapi = GetAPIVersion() > 100022
 
-local ID_ELEDRAIN = newapi and 62787 or 62795
+local ID_ELEDRAIN = 62787
+local ID_OFFBALANCE = 62988
+local ID_WEAKENING = 17945
+local ID_SIPHON = 88575
+local ID_WARHORN = 40224
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -35,7 +39,9 @@ local pool = ZO_ObjectPool:New(function(objectPool)
 		
 		olditem:SetHidden(true)
 		
-		tauntlist[olditem.id..","..olditem.abilityId] = nil
+		local id, abilityId = olditem.id, olditem.abilityId
+		
+		if id and abilityId then tauntlist[id..","..abilityId] = nil end
 		
 		olditem.endTime = nil
 		olditem.abilityId = nil
@@ -290,9 +296,6 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 		tauntdata[endTime] = nil		
 		
 		if Untaunted.inCombat == false then 
-		
-			local unitId = item.id	
-			local abilityId = item.abilityId	
 			
 			pool:ReleaseObject(key)			
 		
@@ -440,20 +443,20 @@ local defaults = {
 	["maxbars"] 			= 15, --false=down
 	["bardirection"] 		= false, --false=to the left
 	["accountwide"] 		= true,
-	["trackonlyplayer"]		= true,
+	["trackonlyplayer"]		= true,	
 	["trackedabilities"] 	= {
 	
-		[38541]=true, 
-		[ID_ELEDRAIN]=false, 
+		[38541] = true, 
+		[ID_ELEDRAIN] = false, 
 		[81519]=false, 
 		[68359]=false, 
 		[88604]=false, 
 		[88634]=false, 
 		[17906]=false, 
 		[46537]=false, 
-		[63003]=false, 
+		[ID_OFFBALANCE]=false, 
 		[102771]=false, 
-		[17945]=false, 
+		[ID_WEAKENING]=false, 
 	
 	}
 }
@@ -528,7 +531,7 @@ local function MakeMenu()
 			tooltip = GetString(SI_UNTAUNTED_MENU_MAX_BARS_TOOLTIP),
 			min = 5,
 			max = 25,
-			step = 10,
+			step = 1,
 			default = def.maxbars,
 			getFunc = function() return zo_round(db.maxbars) end,
 			setFunc = function(value) 
@@ -621,24 +624,23 @@ local function MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON), -- Siphon Spirit: 88634
+			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON),
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP),
-			default = def.trackedabilities[88634],
-			getFunc = function() return db.trackedabilities[88634] end,
+			default = def.trackedabilities[ID_SIPHON],
+			getFunc = function() return db.trackedabilities[ID_SIPHON] end,
 			setFunc = function(value) 
-						db.trackedabilities[88634] = value 
-						db.trackedabilities[88604] = value
+						db.trackedabilities[ID_SIPHON] = value 
 						RegisterAbilities()
 					  end,
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN), -- Warhorn: 46537
+			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN),
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP),
-			default = def.trackedabilities[46537],
-			getFunc = function() return db.trackedabilities[46537] end,
+			default = def.trackedabilities[ID_WARHORN],
+			getFunc = function() return db.trackedabilities[ID_WARHORN] end,
 			setFunc = function(value) 
-						db.trackedabilities[46537] = value 
+						db.trackedabilities[ID_WARHORN] = value 
 						RegisterAbilities()
 					  end,
 		},
@@ -646,10 +648,10 @@ local function MakeMenu()
 			type = "checkbox",
 			name = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE), -- Off Balance: 63003
 			tooltip = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP),
-			default = def.trackedabilities[63003],
-			getFunc = function() return db.trackedabilities[63003] end,
+			default = def.trackedabilities[ID_OFFBALANCE],
+			getFunc = function() return db.trackedabilities[ID_OFFBALANCE] end,
 			setFunc = function(value) 
-						db.trackedabilities[63003] = value 
+						db.trackedabilities[ID_OFFBALANCE] = value 
 						RegisterAbilities()
 					  end,
 		},
@@ -666,12 +668,12 @@ local function MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_WEAKENING), -- Off Balance: 17945
+			name = GetString(SI_UNTAUNTED_MENU_WEAKENING),
 			tooltip = GetString(SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP),
-			default = def.trackedabilities[17945],
-			getFunc = function() return db.trackedabilities[17945] end,
+			default = def.trackedabilities[ID_WEAKENING],
+			getFunc = function() return db.trackedabilities[ID_WEAKENING] end,
 			setFunc = function(value) 
-						db.trackedabilities[17945] = value 
+						db.trackedabilities[ID_WEAKENING] = value 
 						RegisterAbilities()
 					  end,
 		},
@@ -743,8 +745,21 @@ function Untaunted:Initialize(event, addon)
 		db.accountwide = false
 	end
 	
+	if db.APIversion == nil then 	-- reload abilitytable if upgrading
+	
+		local newabilitydata = {}
+		
+		ZO_DeepTableCopy(defaults.trackedabilities, newabilitydata)
+		
+		db.trackedabilities = newabilitydata
+		
+		db.APIversion = GetAPIVersion()
+		
+	end
+		
+	
 	Untaunted.debug = false
-	-- Untaunted.db = db
+	Untaunted.db = db
 	
 	RegisterAbilities()
 	
