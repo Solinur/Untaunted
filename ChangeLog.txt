@@ -79,3 +79,9 @@ Bugfix
 0.2.10: DL: 34,978 (26.02.2018) 01:58
 [*]fixed tracking for Siphon Spirit and added tracking for Quick Siphon
 [*]added tracking for Off Balance Immunity
+
+0.2.11: DL: 44,312 (21.05.2018) 15:50
+[*]API Bump to Summerset (100023)
+[*]Update LAM to r26
+[*]Changed skill ids for Summerset.
+[*]Settings for tracked skills are reset. This is due ZOS changing the skill ids in this patch.
