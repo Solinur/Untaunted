@@ -12,7 +12,7 @@ local OnTauntEnd
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.11"
+Untaunted.version 	= "0.2.12"
 
 --local newapi = GetAPIVersion() > 100022
 
@@ -380,8 +380,6 @@ end
 
 local function SavePosition(control)
 
-	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
-	
 	local x, y = control:GetScreenRect()
 	
 	x = zo_round(x/dx)*dx
@@ -391,7 +389,11 @@ local function SavePosition(control)
 	db.window.y=y
 	
 	control:ClearAnchors()
-	control:SetAnchor(anchorside, GuiRoot, anchorside, x, y)
+	control:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, x, y)
+	
+	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
+	
+	lastanchor = {anchorside, control, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}
 
 end
 
@@ -551,8 +553,9 @@ local function MakeMenu()
 						GetGrowthAnchor()
 						
 						Untaunted.ShowItems(addonpanel)
-						
-						SavePosition(Untaunted_TLW)
+
+						local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
+						lastanchor = {anchorside, window, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}	
 						
 					  end,
 		},
@@ -563,7 +566,7 @@ local function MakeMenu()
 			default = def.bardirection,
 			getFunc = function() return db.bardirection end,
 			setFunc = function(value) 
-						db.bardirection = value  				
+						db.bardirection = value  
 					  end,
 		},
 		{
@@ -780,17 +783,16 @@ function Untaunted:Initialize(event, addon)
 	
 	MakeMenu()
 		
-	local window = Untaunted_TLW
-	
-	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
+	local window = Untaunted_TLW	
 	
 	if (db.window) then
 		window:ClearAnchors()
-		window:SetAnchor(anchorside, GuiRoot, anchorside, db.window.x, db.window.y)
+		window:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, db.window.x, db.window.y)
 	end
 		
-	window:SetHandler("OnMoveStop", SetTlwPosition)	
+	window:SetHandler("OnMoveStop", SavePosition)	
 	
+	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
 	lastanchor = {anchorside, window, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}
 	
 	local fragment = ZO_SimpleSceneFragment:New(window)
