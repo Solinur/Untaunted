@@ -380,18 +380,23 @@ end
 
 local function SavePosition(control)
 
-	local x, y = control:GetScreenRect()
+	local x, y1 = control:GetScreenRect()
+	local y2 = control:GetBottom() - GuiRoot:GetBottom()
 	
+	local upwards = db.growthdirection
+	
+	local y = upwards and y2 or y1
+
 	x = zo_round(x/dx)*dx
 	y = zo_round(y/dx)*dx
+	
+	local anchorside = upwards and BOTTOMLEFT or TOPLEFT
 	
 	db.window.x=x
 	db.window.y=y
 	
 	control:ClearAnchors()
-	control:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, x, y)
-	
-	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
+	control:SetAnchor(anchorside, GuiRoot, anchorside, x, y)
 	
 	lastanchor = {anchorside, control, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}
 
@@ -554,8 +559,7 @@ local function MakeMenu()
 						
 						Untaunted.ShowItems(addonpanel)
 
-						local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
-						lastanchor = {anchorside, window, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}	
+						SavePosition(Untaunted_TLW)
 						
 					  end,
 		},
@@ -785,15 +789,16 @@ function Untaunted:Initialize(event, addon)
 		
 	local window = Untaunted_TLW	
 	
+	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
+	
 	if (db.window) then
 		window:ClearAnchors()
-		window:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, db.window.x, db.window.y)
+		window:SetAnchor(anchorside, GuiRoot, anchorside, db.window.x, db.window.y)
 	end
 		
 	window:SetHandler("OnMoveStop", SavePosition)	
 	
-	local anchorside = db.growthdirection and BOTTOMLEFT or TOPLEFT
-	lastanchor = {anchorside, window, anchorside, zo_round(4/dx)*dx, zo_round(4/dx)*dx}
+	SavePosition(window)
 	
 	local fragment = ZO_SimpleSceneFragment:New(window)
 	HUD_SCENE:AddFragment(fragment)
@@ -803,8 +808,8 @@ function Untaunted:Initialize(event, addon)
 	scene:AddFragment(fragment)
 	scene:RegisterCallback("StateChange", Untaunted.SceneEnd)
 	
-	--Untaunted.ShowItems(addonpanel)
-	--zo_callLater(Untaunted.ClearItems, 1)
+	Untaunted.ShowItems(addonpanel)
+	zo_callLater(Untaunted.ClearItems, 1)
 end
 
 -- Finally, we'll register our event handler function to be called when the proper event occurs.
