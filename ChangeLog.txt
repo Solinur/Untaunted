@@ -85,3 +85,6 @@ Bugfix
 [*]Update LAM to r26
 [*]Changed skill ids for Summerset.
 [*]Settings for tracked skills are reset. This is due ZOS changing the skill ids in this patch.
+
+0.2.12: DL: 49,581 (29.05.2018) 22:55
+[*]Fix ""Add Frames Upwards" option. 
