@@ -12,7 +12,7 @@ local OnTauntEnd
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.12"
+Untaunted.version 	= "0.2.14"
 
 --local newapi = GetAPIVersion() > 100022
 
