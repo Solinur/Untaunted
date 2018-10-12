@@ -445,7 +445,7 @@ end
 local defaults = {
 
 	["window"] 				= {x=150*dx,y=150*dx,height=zo_round(25/dx)*dx,width=zo_round(300/dx)*dx},
-	["showmarker2"] 		= false,
+	["showmarker"] 			= false,
 	["growthdirection"] 	= false, --false=down
 	["maxbars"] 			= 15, --false=down
 	["bardirection"] 		= false, --false=to the left
@@ -572,6 +572,15 @@ local function MakeMenu()
 			setFunc = function(value) 
 						db.bardirection = value  
 					  end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_SHOWMARKER),
+			tooltip = GetString(SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP),
+			default = def.showmarker,
+			getFunc = function() return db.showmarker end,
+			setFunc = function(value) db.showmarker = value end,
+			requiresReload = true,
 		},
 		{
 			type = "checkbox",
@@ -734,6 +743,12 @@ local function MakeMenu()
 	return menu
 end
 
+function Untaunted.OnPlayerActivated()
+	if db.showmarker ~= true then return end
+	SetFloatingMarkerInfo(MAP_PIN_TYPE_AGGRO, 26, "Untaunted/textures/redarrow.dds")
+	SetFloatingMarkerGlobalAlpha(1)
+end
+
 -- Initialization
 function Untaunted:Initialize(event, addon)
 
@@ -781,6 +796,8 @@ function Untaunted:Initialize(event, addon)
 	 
 	em:RegisterForEvent(name.."_combat", EVENT_PLAYER_COMBAT_STATE, OnCombatState)
 	em:RegisterForEvent(name.."_target", EVENT_RETICLE_TARGET_CHANGED , OnTargetChange)
+	
+	em:RegisterForEvent(name.."active", EVENT_PLAYER_ACTIVATED, self.OnPlayerActivated)
 		
 	self.playername = zo_strformat("<<!aC:1>>",GetUnitName("player"))
 	self.inCombat = IsUnitInCombat("player")
