@@ -97,3 +97,7 @@ Bugfix
 
 0.2.14: DL: 59,051 (13.08.2018) 01:19
 [*]API Bump to Wolfhunter (100024)
+
+0.2.15: DL: 69,721 (21.10.2018) 19:55
+[*]API Bump to Murkmire (100025)
+[*]Reimplemented the enemy markers (red arrows) since ZOS fixed the potential crash related to this function.
