@@ -101,3 +101,7 @@ Bugfix
 0.2.15: DL: 69,721 (21.10.2018) 19:55
 [*]API Bump to Murkmire (100025)
 [*]Reimplemented the enemy markers (red arrows) since ZOS fixed the potential crash related to this function.
+
+0.2.16: DL: 83,036 (22.01.2018)
+[*]API Bump to Wrathstone (100026)
+[*]Reorganized bundled libraries (Make sure to activate them in the Addon Panel)

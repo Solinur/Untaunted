@@ -1,8 +1,8 @@
 ﻿## Title: Untaunted
-## APIVersion: 100025
+## APIVersion: 100025 100026
 ## Author: Solinur/decay
-## Version: 0.2.15
-## AddOnVersion: 215
+## Version: 0.2.16
+## AddOnVersion: 216
 ## DependsOn: LibAddonMenu-2.0 LibStub
 ## OptionalDependsOn: 
 ## SavedVariables: Untaunted_Save
