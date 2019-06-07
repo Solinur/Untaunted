@@ -7,20 +7,14 @@ local TIMER_UPDATE_RATE = 200
 local tauntlist = {}	-- holds all currently registered unitid/abilityid pairs
 local tauntdata = {}	-- holds all endtimes of registered effects
 local OnTauntEnd
+local AbilityCopies = {}
+ActiveAbilityIdList = {}
 
 -- Addon Namespace
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.17"
-
---local newapi = GetAPIVersion() > 100022
-
-local ID_ELEDRAIN = 62787
-local ID_OFFBALANCE = 62988
-local ID_WEAKENING = 17945
-local ID_SIPHON = 88575
-local ID_WARHORN = 40224
+Untaunted.version 	= "0.2.18"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -41,7 +35,9 @@ local pool = ZO_ObjectPool:New(function(objectPool)
 		
 		local id, abilityId = olditem.id, olditem.abilityId
 		
-		if id and abilityId then tauntlist[id..","..abilityId] = nil end
+		local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", id, abilityId)
+		
+		if id and abilityId then tauntlist[idkey] = nil end
 		
 		olditem.endTime = nil
 		olditem.abilityId = nil
@@ -242,7 +238,7 @@ local function OnTargetChange()
 	
 		_, _, endTime, _, _, _, _, _, _, _, abilityId, _ = GetUnitBuffInfo("reticleover", i)
 		
-		if tauntdata[endTime] ~= nil and db.trackedabilities[abilityId] then  
+		if tauntdata[endTime] ~= nil and ActiveAbilityIdList[abilityId] then  
 		
 			local key = tauntdata[endTime]
 			
@@ -266,7 +262,7 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 	
 	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=102771) then return end
 	
-	local idkey = unitId..","..abilityId
+	local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", unitId, abilityId)
 	
 	local key = tauntlist[idkey]
 	
@@ -311,9 +307,13 @@ end
 
 local function OnUnitDeath(_, result, _, _, _, _, _, _, targetName, targetType, _, _, _, _, _, targetUnitId, _) 
 	
-	for k,v in pairs(db.trackedabilities) do 
+	for i, data in pairs(db.trackedabilities) do 
 	
-		local key = tauntlist[targetUnitId..","..k]
+		local id = data[1]
+		
+		local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", targetUnitId, id)
+	
+		local key = tauntlist[idkey]
 		
 		if key ~= nil then
 		
@@ -406,40 +406,71 @@ local function RegisterAbilities()
 
 	local name = Untaunted.name
 	
-	for k,v in pairs(db.trackedabilities) do
+	for i, data in pairs(db.trackedabilities) do
 	
-		em:UnregisterForEvent(name.."_ability_"..k)
+		local id = data[1]
+	
+		em:UnregisterForEvent(name.."_ability_"..id)		
 		
+		if AbilityCopies[id] then 
+			
+			for _,id2 in pairs(AbilityCopies[id]) do
+			
+				local idstring = name.."_ability_"..id2
+				
+				em:UnregisterForEvent(name.."_ability_"..id2)
+	
+			end
+		end		
 	end
 	
-	for k,v in pairs(db.trackedabilities) do
+	ActiveAbilityIdList = {}
 	
-		if v==true then 
+	for i, data in pairs(db.trackedabilities) do
+	
+		local id, active = unpack(data)
+	
+		if active == true then 
 			
-			local idstring = name.."_ability_"..k
+			local idstring = name.."_ability_"..id
 			
 			em:RegisterForEvent(idstring, EVENT_EFFECT_CHANGED, onTaunt)
 			
+			ActiveAbilityIdList[id] = true
+			
 			local addfilter = {}
 			
-			if db.trackonlyplayer and k~=102771 then
+			if db.trackonlyplayer and id~=102771 then
 			
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
 				
 			end
 			
-			if k==46537 then 
+			if id==40224 then 
 			
 				table.insert(addfilter, REGISTER_FILTER_UNIT_TAG)
 				table.insert(addfilter, "player")
 				
 			end
 			
-			em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, k, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) -- Taunt: 38541, Elemental Drain: 62795
+			em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) -- Taunt: 38541, Elemental Drain: 62795
+		
+			if AbilityCopies[id] then 
+			
+				for _,id2 in pairs(AbilityCopies[id]) do
+				
+					local idstring = name.."_ability_"..id2
+					
+					ActiveAbilityIdList[id2] = true
+					
+					em:RegisterForEvent(idstring, EVENT_EFFECT_CHANGED, onTaunt)
+					em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id2, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) 
+		
+				end
+			end
 		end
-	end
-	
+	end	
 end 
 
 local defaults = {
@@ -453,19 +484,25 @@ local defaults = {
 	["trackonlyplayer"]		= true,	
 	["trackedabilities"] 	= {
 	
-		[38541] = true, 
-		[ID_ELEDRAIN] = false, 
-		[81519]=false, 
-		[68359]=false, 
-		[88604]=false, 
-		[88634]=false, 
-		[17906]=false, 
-		[46537]=false, 
-		[ID_OFFBALANCE]=false, 
-		[102771]=false, 
-		[ID_WEAKENING]=false, 
+		{38541, true}, 		-- Taunt
+		{62787, false}, 	-- Major Breach
+		{81519, false}, 	-- Minor Vulnerability
+		{88604, false}, 	-- Minor Lifesteal
+		{17906, false}, 	-- Crusher
+		{62988, false}, 	-- Off Balance
+		{102771, false}, 	-- Off Balance Immunity
+		{17945, false}, 	-- Weakening
+		{40224, false}, 	-- Aggresive Horn
+		{21763, false}, 	-- Power of the Light
 	
 	}
+}
+
+AbilityCopies = {
+
+		[81519] = {68359}, 					-- Minor Vulnerability
+		[88604] = {88634, 88575, 88565, 88606}, 	-- Minor Lifesteal
+		
 }
 
 local addonpanel
@@ -584,7 +621,7 @@ local function MakeMenu()
 		},
 		{
 			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER), -- Taunt: 38541
+			name = GetString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER),
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP),
 			default = def.trackonlyplayer,
 			getFunc = function() return db.trackonlyplayer end,
@@ -593,107 +630,31 @@ local function MakeMenu()
 						RegisterAbilities()
 					  end,
 		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKTAUNT), -- Taunt: 38541
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKTAUNT_TOOLTIP),
-			default = def.trackedabilities[38541],
-			getFunc = function() return db.trackedabilities[38541] end,
-			setFunc = function(value) 
-						db.trackedabilities[38541] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKELEDRAIN), -- Elemental Drain: 62795
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKELEDRAIN_TOOLTIP),
-			default = def.trackedabilities[ID_ELEDRAIN],
-			getFunc = function() return db.trackedabilities[ID_ELEDRAIN] end,
-			setFunc = function(value) 
-						db.trackedabilities[ID_ELEDRAIN] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKINFAETHER), -- Infallible Aether: 81519
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKINFAETHER_TOOLTIP),
-			default = def.trackedabilities[81519],
-			getFunc = function() return db.trackedabilities[81519] end,
-			setFunc = function(value) 
-						db.trackedabilities[81519] = value 
-						db.trackedabilities[68359] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKCRUSHER), -- Crusher: 17906
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKCRUSHER_TOOLTIP),
-			default = def.trackedabilities[17906],
-			getFunc = function() return db.trackedabilities[17906] end,
-			setFunc = function(value) 
-						db.trackedabilities[17906] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON),
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP),
-			default = def.trackedabilities[ID_SIPHON],
-			getFunc = function() return db.trackedabilities[ID_SIPHON] end,
-			setFunc = function(value) 
-						db.trackedabilities[ID_SIPHON] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN),
-			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP),
-			default = def.trackedabilities[ID_WARHORN],
-			getFunc = function() return db.trackedabilities[ID_WARHORN] end,
-			setFunc = function(value) 
-						db.trackedabilities[ID_WARHORN] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE), -- Off Balance: 63003
-			tooltip = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP),
-			default = def.trackedabilities[ID_OFFBALANCE],
-			getFunc = function() return db.trackedabilities[ID_OFFBALANCE] end,
-			setFunc = function(value) 
-						db.trackedabilities[ID_OFFBALANCE] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY), -- Off Balance Immunity: 102771 (target buff)
-			tooltip = GetString(SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY_TOOLTIP),
-			default = def.trackedabilities[102771],
-			getFunc = function() return db.trackedabilities[102771] end,
-			setFunc = function(value) 
-						db.trackedabilities[102771] = value 
-						RegisterAbilities()
-					  end,
-		},
-		{
-			type = "checkbox",
-			name = GetString(SI_UNTAUNTED_MENU_WEAKENING),
-			tooltip = GetString(SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP),
-			default = def.trackedabilities[ID_WEAKENING],
-			getFunc = function() return db.trackedabilities[ID_WEAKENING] end,
-			setFunc = function(value) 
-						db.trackedabilities[ID_WEAKENING] = value 
-						RegisterAbilities()
-					  end,
-		},
 	}
+	
+	for i, data in ipairs(db.trackedabilities) do
+	
+		local id = data[1]
+	
+		local name = GetAbilityName(id)
+	
+		local entry = {
+		
+			type = "checkbox",
+			name = string.format(GetString(SI_UNTAUNTED_MENU_TRACK), name),
+			tooltip = string.format(GetString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP), name),
+			default = def.trackedabilities[i][2],
+			getFunc = function() return data[2] end,
+			setFunc = function(value) 
+				data[2] = value 
+				RegisterAbilities()
+			end,
+			
+		}
+		
+		table.insert(options, entry)
+		
+	end
 
 	menu:RegisterOptionControls("Untaunted_Options", options)
 	
@@ -760,26 +721,38 @@ function Untaunted:Initialize(event, addon)
 	
 	local SaveIdString = self.name.."_Save"
  
-	db = ZO_SavedVars:NewAccountWide(SaveIdString, 7, nil, defaults) -- taken from Aynatirs guide at http://www.esoui.com/forums/showthread.php?t=6442
+	db = ZO_SavedVars:NewAccountWide(SaveIdString, 7, nil, defaults)
 	
 	if db.accountwide == false then
 		db = ZO_SavedVars:NewCharacterIdSettings(SaveIdString, 7, nil, defaults)
 		db.accountwide = false
 	end
 	
-	if db.APIversion == nil then 	-- reload abilitytable if upgrading
-	
-		local newabilitydata = {}
+	if db.trackedabilities[38541] then	-- convert to new format
+
+		for i = 1, #db.trackedabilities do
 		
-		ZO_DeepTableCopy(defaults.trackedabilities, newabilitydata)
+			local data = db.trackedabilities[i]
+			
+			local oldId = data[1]
+				
+			data[2] = db.trackedabilities[oldId]
+				
+		end
 		
-		db.trackedabilities = newabilitydata
+		for id, _ in pairs(db.trackedabilities) do
 		
-		db.APIversion = GetAPIVersion()
+			if id > #db.trackedabilities then
+			
+				db.trackedabilities[id] = nil
+				
+			end
+		end
 		
-	end
+		db.showmarker2 = nil
+		db.APIversion = nil
+	end	
 		
-	
 	Untaunted.debug = false
 	Untaunted.db = db
 	

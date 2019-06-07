@@ -21,25 +21,8 @@
 	SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP = "Show markers (like group pins) over enemies you engaged in combat", 	-- "Show markers (like group pins) over enemies you engaged in combat"
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER = "Only Player Effects", 	-- "Only Player Effects"
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP = "Select to track only Player Effects", 	-- "Select to track only Player Effects"
-	SI_UNTAUNTED_MENU_TRACKTAUNT = "Track Taunt", 	-- "Track Taunt"
-	SI_UNTAUNTED_MENU_TRACKTAUNT_TOOLTIP = "Select to track Taunts", 	-- "Select to track Taunts"
-	SI_UNTAUNTED_MENU_TRACKELEDRAIN = "Track Elemental Drain", 	-- "Track Elemental Drain"
-	SI_UNTAUNTED_MENU_TRACKELEDRAIN_TOOLTIP = "Select to track the Elemental Drain debuff", 	-- "Select to track the Elemental Drain debuff"
-	SI_UNTAUNTED_MENU_TRACKINFAETHER = "Track Infallible Aether / Minor Vulnerability", 	-- "Track Infallible Aether / Minor Vulnerability"
-	SI_UNTAUNTED_MENU_TRACKINFAETHER_TOOLTIP = "Select to track the Infallible Aether debuff", 	-- "Select to track the Infallible Aether debuff"
-	SI_UNTAUNTED_MENU_TRACKSIPHON = "Track Siphon Spirit", 	-- "Track Siphon Spirit"
-	SI_UNTAUNTED_MENU_TRACKSIPHON_TOOLTIP = "Select to track the Siphon Spirit debuff", 	-- "Select to track the Siphon Spirit debuff"
-	SI_UNTAUNTED_MENU_TRACKCRUSHER = "Track Crusher", 	-- "Track Crusher"
-	SI_UNTAUNTED_MENU_TRACKCRUSHER_TOOLTIP = "Select to track the Crusher debuff", 	-- "Select to track the Crusher debuff"
-	SI_UNTAUNTED_MENU_TRACKWARHORN = "Track Warhorn", 	-- "Track Warhorn"
-	SI_UNTAUNTED_MENU_TRACKWARHORN_TOOLTIP = "Select to track track Warhorn (only for yourself)", 	-- "Select to track track Warhorn (only for yourself)"
-	SI_UNTAUNTED_MENU_OFF_BALANCE = "Track Off Balance", 	-- "Track Warhorn"
-	SI_UNTAUNTED_MENU_OFF_BALANCE_TOOLTIP = "Select to track track Off Balance", 	-- "Select to track track Off Balance"
-	SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY = "Track Off Balance Immunity", 	-- "Track Warhorn"
-	SI_UNTAUNTED_MENU_OFF_BALANCE_IMMUNITY_TOOLTIP = "Select to track track Off Balance Immunity", 	-- "Select to track track Off Balance"
-	SI_UNTAUNTED_MENU_WEAKENING = "Track Weakening", 	-- "Track Warhorn"
-	SI_UNTAUNTED_MENU_WEAKENING_TOOLTIP = "Select to track track Weakening", 	-- "Select to track track Off Balance"
-
+	SI_UNTAUNTED_MENU_TRACK = "Track %s", 	-- e.g. "Track Taunt"
+	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunts"
 }
 
 for stringId, stringValue in pairs(strings) do
