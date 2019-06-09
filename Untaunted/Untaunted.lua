@@ -7,14 +7,14 @@ local TIMER_UPDATE_RATE = 200
 local tauntlist = {}	-- holds all currently registered unitid/abilityid pairs
 local tauntdata = {}	-- holds all endtimes of registered effects
 local OnTauntEnd
+local ActiveAbilityIdList = {}
 local AbilityCopies = {}
-ActiveAbilityIdList = {}
 
 -- Addon Namespace
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.18"
+Untaunted.version 	= "0.2.19"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -493,15 +493,18 @@ local defaults = {
 		{102771, false}, 	-- Off Balance Immunity
 		{17945, false}, 	-- Weakening
 		{40224, false}, 	-- Aggresive Horn
+		{64144, false}, 	-- Minor Fracture (PotL)
+		{68588, false}, 	-- Minor Breach (PotL)
 		{21763, false}, 	-- Power of the Light
-	
 	}
 }
 
 AbilityCopies = {
 
-		[81519] = {68359}, 					-- Minor Vulnerability
-		[88604] = {88634, 88575, 88565, 88606}, 	-- Minor Lifesteal
+		[81519] = {68359}, 										-- Minor Vulnerability
+		[88604] = {88634, 88575, 88565, 88606}, 				-- Minor Lifesteal
+		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 	-- Minor Fracture
+		[68588] = {79086, 79087, 79284, 79306, 108825}, 		-- Minor Breach
 		
 }
 
@@ -710,24 +713,8 @@ function Untaunted.OnPlayerActivated()
 	SetFloatingMarkerGlobalAlpha(1)
 end
 
--- Initialization
-function Untaunted:Initialize(event, addon)
+local function UpdateAbilityTable()
 
-	local name = self.name
-
-	if addon ~= name then return end --Only run if this addon has been loaded
- 
-	-- load saved variables
-	
-	local SaveIdString = self.name.."_Save"
- 
-	db = ZO_SavedVars:NewAccountWide(SaveIdString, 7, nil, defaults)
-	
-	if db.accountwide == false then
-		db = ZO_SavedVars:NewCharacterIdSettings(SaveIdString, 7, nil, defaults)
-		db.accountwide = false
-	end
-	
 	if db.trackedabilities[38541] then	-- convert to new format
 
 		for i = 1, #db.trackedabilities do
@@ -752,6 +739,51 @@ function Untaunted:Initialize(event, addon)
 		db.showmarker2 = nil
 		db.APIversion = nil
 	end	
+	
+	local newList = {} -- Rebuid ability table if set of abilities has changed
+		
+	ZO_DeepTableCopy(defaults.trackedabilities, newList)
+	
+	for i = 1, #newList do
+	
+		local id = newList[i][1] 
+		
+		for j = 1, #db.trackedabilities do			
+			
+			if id == db.trackedabilities[j][1] then 
+			
+				newList[i][2] = db.trackedabilities[j][2]
+				break
+				
+			end
+		end
+	end
+	
+	db.trackedabilities = newList
+	
+	db.lastversion = Untaunted.version
+	
+end
+
+-- Initialization
+function Untaunted:Initialize(event, addon)
+
+	local name = self.name
+
+	if addon ~= name then return end --Only run if this addon has been loaded
+ 
+	-- load saved variables
+	
+	local SaveIdString = self.name.."_Save"
+ 
+	db = ZO_SavedVars:NewAccountWide(SaveIdString, 7, nil, defaults)
+	
+	if db.accountwide == false then
+		db = ZO_SavedVars:NewCharacterIdSettings(SaveIdString, 7, nil, defaults)
+		db.accountwide = false
+	end
+	
+	if db.lastversion ~= Untaunted.version then UpdateAbilityTable() end
 		
 	Untaunted.debug = false
 	Untaunted.db = db

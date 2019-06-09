@@ -110,6 +110,9 @@ Bugfix
 [*]API Bump to Elsweyr (100027)
 [*]Updated Libs
 
-0.2.17: DL: 121,534 (07.06.2019) 22:25
+0.2.18: DL: 121,534 (07.06.2019) 22:25
 [*]Improved internal structure a bit
 [*]Added tracking for Power of the Light
+
+0.2.19: DL: 127,845 (09.06.2019) 19:33
+[*]Added tracking for Minor Breach and Minor Fracture (It probably makes more sense to track those instead of PotL)
