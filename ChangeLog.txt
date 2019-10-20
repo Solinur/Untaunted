@@ -1,47 +1,47 @@
 0.1.2: DL:166 (15.09.2016, 23:37)
-[*]The settings are now accountwide and no longer overwritten with defaults on reloadui
-[*]The frames are now resized immediately when the settings are changed, as intended. 
+[*] The settings are now accountwide and no longer overwritten with defaults on reloadui
+[*] The frames are now resized immediately when the settings are changed, as intended. 
 
 0.1.3: DL:523 (02.10.2016, 22:01)
-[*]Added an option to invert the timer bars (so they shrinnk to the right)
-[*]Added an option to invert the growth direction of new frames (so a new frame is added above).
-[*]Added option to show markers on engaged enemies. (They work like group pins, and the only thing that can be done in the API is to select the Icon that is shown)
+[*] Added an option to invert the timer bars (so they shrinnk to the right)
+[*] Added an option to invert the growth direction of new frames (so a new frame is added above).
+[*] Added option to show markers on engaged enemies. (They work like group pins, and the only thing that can be done in the API is to select the Icon that is shown)
 
 0.1.4: DL:580 (03.10.2016, 13:05)
-[*]Updated LibAddonMenu to 2.0 r22
+[*] Updated LibAddonMenu to 2.0 r22
 
 0.1.5: DL:640 (04.10.2016, 01:07)
-[*]Included the texture for target markers that I forgot to add before. Sorry! (Note that you will always get a marker on every enemy NPC you are in a fight with, not just the ones you taunted. This is a limitation by the API)
+[*] Included the texture for target markers that I forgot to add before. Sorry! (Note that you will always get a marker on every enemy NPC you are in a fight with, not just the ones you taunted. This is a limitation by the API)
 
 0.1.6: DL: 1,076 (15.10.2016, 15:00)
-[*]Added Japanese and German translations
+[*] Added Japanese and German translations
 
 0.1.6_fix: DL: 1,288 (16.10.2016, 15:34)
-[*]Readded texture for the markers on enemies. (Sorry I forgot them agian :( )
+[*] Readded texture for the markers on enemies. (Sorry I forgot them agian :( )
 
 0.1.7: DL: 1,852 (24.10.2016, 23:10)
-[*]Implemented a fix that discards targets when the taunt runs out but no event is sent from the API (thx @manavortex for reporting)
+[*] Implemented a fix that discards targets when the taunt runs out but no event is sent from the API (thx @manavortex for reporting)
 
 0.1.8: DL: 2,353 (01.11.2016, 21:06)
-[*]Updated LibAddonMenu to version 2.0 r23
+[*] Updated LibAddonMenu to version 2.0 r23
 
 0.1.9: DL: 2,674 (03.11.2016, 23:57)
-[*]Fixed a critical bug that would constantly throw error messages for players that used high UIscale Settings.
+[*] Fixed a critical bug that would constantly throw error messages for players that used high UIscale Settings.
 
 0.1.10: DL: 3,506 (26.11.2016, 00:59)
-[*]Fixed a bug that could cause an error message. 
-[*]Added an option to track elemental drain instead of taunt (Requested by @Geckox)
+[*] Fixed a bug that could cause an error message. 
+[*] Added an option to track elemental drain instead of taunt (Requested by @Geckox)
 
 0.2.0: DL: 4,715 (31.12.2016, 13:51)
-[*]Added individual settings per character
-[*]Changed how different debuffs are tracked: Each can now be switched on and off. Instead of the skull symbol the debuff icon will now be shown.
-[*]Added tracking for Infallible Aether and Siphon Spirit
-[*]Note: More debuffs for tracking could be added per request. If there is a need for it I might add a way to manually add more debuffs to track. However I do not intend to increase the scope of the addon to a point where you have multiple UI areas or customizations per ability. It is supposed to be a simple addon to track a single or at most few selected debuffs)
+[*] Added individual settings per character
+[*] Changed how different debuffs are tracked: Each can now be switched on and off. Instead of the skull symbol the debuff icon will now be shown.
+[*] Added tracking for Infallible Aether and Siphon Spirit
+[*] Note: More debuffs for tracking could be added per request. If there is a need for it I might add a way to manually add more debuffs to track. However I do not intend to increase the scope of the addon to a point where you have multiple UI areas or customizations per ability. It is supposed to be a simple addon to track a single or at most few selected debuffs)
 
 0.2.1: DL: 5,075 (02.01.2017, 15:58)
-[*]Fixed a bug where the timer would not refresh for Infallible Aether correctly.
-[*]Fixed a bug where that caused a lua error
-[*]Fixed a bug that prevented the reticleover effect from showing
+[*] Fixed a bug where the timer would not refresh for Infallible Aether correctly.
+[*] Fixed a bug where that caused a lua error
+[*] Fixed a bug that prevented the reticleover effect from showing
 
 0.2.2
 Bugfix
@@ -50,73 +50,77 @@ Bugfix
 Bugfix
 
 0.2.4: DL: 6,645 (05.02.2017, 15:58)
-[*]API Bump to Homestead (100018)
+[*] API Bump to Homestead (100018)
 
 0.2.5: DL: 8,644 (21.03.2017, 22:42)
-[*]Added Minor Vulnerability to trackable debuffs.
-[*]Added Warhorn as a trackable debuff. 
-[*]Added an option to only those debuffs that were cast by the player.
-[*]Prevent showing tracked debuffs on players. (Yes, the Mage can apply Minor Vulnerability too!)
-[*]Note: An option to show debuffs applied by others in a different style will be added in a later patch. 
+[*] Added Minor Vulnerability to trackable debuffs.
+[*] Added Warhorn as a trackable debuff. 
+[*] Added an option to only those debuffs that were cast by the player.
+[*] Prevent showing tracked debuffs on players. (Yes, the Mage can apply Minor Vulnerability too!)
+[*] Note: An option to show debuffs applied by others in a different style will be added in a later patch. 
 
 0.2.6: DL: 12,261 (22.05.2017, 22:39)
-[*]API Bump to Morrowind (100019)
-[*]Activated enemy markers again. (No clue why I disabled it.)
+[*] API Bump to Morrowind (100019)
+[*] Activated enemy markers again. (No clue why I disabled it.)
 
 0.2.7: DL: 17,788 (13.08.2017) 20:40
-[*]Removed enemy markers again. (It can crash the game. It can even cause you crashing when logging back in after a crash. I'll ask ZOS about it.)
-[*]API Bump to Horns of the Reach (100020)
-[*]Added support for Crusher debuff
+[*] Removed enemy markers again. (It can crash the game. It can even cause you crashing when logging back in after a crash. I'll ask ZOS about it.)
+[*] API Bump to Horns of the Reach (100020)
+[*] Added support for Crusher debuff
 
 0.2.8: DL: 25,775 (05.01.2018) 19:55
-[*]API Bump to Clockwork City (100021)
-[*]Updated LibAddonMenu to version 2.0 r25 to fix an issue
+[*] API Bump to Clockwork City (100021)
+[*] Updated LibAddonMenu to version 2.0 r25 to fix an issue
 
 0.2.9: DL: 30,544 (13.02.2018) 01:24
-[*]Readded siphon spirit tracking
-[*]Added Off Balance and Weakening to trackable Debuffs
+[*] Readded siphon spirit tracking
+[*] Added Off Balance and Weakening to trackable Debuffs
 
 0.2.10: DL: 34,978 (26.02.2018) 01:58
-[*]fixed tracking for Siphon Spirit and added tracking for Quick Siphon
-[*]added tracking for Off Balance Immunity
+[*] fixed tracking for Siphon Spirit and added tracking for Quick Siphon
+[*] added tracking for Off Balance Immunity
 
 0.2.11: DL: 44,312 (21.05.2018) 15:50
-[*]API Bump to Summerset (100023)
-[*]Update LAM to r26
-[*]Changed skill ids for Summerset.
-[*]Settings for tracked skills are reset. This is due ZOS changing the skill ids in this patch.
+[*] API Bump to Summerset (100023)
+[*] Update LAM to r26
+[*] Changed skill ids for Summerset.
+[*] Settings for tracked skills are reset. This is due ZOS changing the skill ids in this patch.
 
 0.2.12: DL: 49,581 (29.05.2018) 22:55
-[*]Fix ""Add Frames Upwards" option. 
+[*] Fix ""Add Frames Upwards" option. 
 
 0.2.13: DL: 59,051 (13.08.2018) 01:19
-[*]API Bump to Wolfhunter (100024)
+[*] API Bump to Wolfhunter (100024)
 
 0.2.13: DL: 59,051 (13.08.2018) 01:19
-[*]skipped
+[*] skipped
 
 0.2.14: DL: 59,051 (13.08.2018) 01:19
-[*]API Bump to Wolfhunter (100024)
+[*] API Bump to Wolfhunter (100024)
 
 0.2.15: DL: 69,721 (21.10.2018) 19:55
-[*]API Bump to Murkmire (100025)
-[*]Reimplemented the enemy markers (red arrows) since ZOS fixed the potential crash related to this function.
+[*] API Bump to Murkmire (100025)
+[*] Reimplemented the enemy markers (red arrows) since ZOS fixed the potential crash related to this function.
 
 0.2.16: DL: 83,036 (22.01.2018)
-[*]API Bump to Wrathstone (100026)
-[*]Reorganized bundled libraries (Make sure to activate them in the Addon Panel)
+[*] API Bump to Wrathstone (100026)
+[*] Reorganized bundled libraries (Make sure to activate them in the Addon Panel)
 
 0.2.17: DL: 107,952 (19.05.2019) 21:30
-[*]API Bump to Elsweyr (100027)
-[*]Updated Libs
+[*] API Bump to Elsweyr (100027)
+[*] Updated Libs
 
 0.2.18: DL: 121,534 (07.06.2019) 22:25
-[*]Improved internal structure a bit
-[*]Added tracking for Power of the Light
+[*] Improved internal structure a bit
+[*] Added tracking for Power of the Light
 
 0.2.19: DL: 127,845 (09.06.2019) 19:33
-[*]Added tracking for Minor Breach and Minor Fracture (It probably makes more sense to track those instead of PotL)
+[*] Added tracking for Minor Breach and Minor Fracture (It probably makes more sense to track those instead of PotL)
 
 0.2.20: DL: 144,020 (12.08.2019) 00:03
-[*]API Bump to Scalebreaker (100028)
-[*]Updated Libraries
+[*] API Bump to Scalebreaker (100028)
+[*] Updated Libraries
+
+0.2.21: DL: 160,314 (20.10.2019) 23:02
+[*] API Bump to Dragonhold (100029)
+[*] Info: The next update will remove bundled libraries.
