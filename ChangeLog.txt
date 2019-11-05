@@ -124,3 +124,9 @@ Bugfix
 0.2.21: DL: 160,314 (20.10.2019) 23:02
 [*] API Bump to Dragonhold (100029)
 [*] Info: The next update will remove bundled libraries.
+[*] Updated Libraries
+
+0.2.22: DL: 170,216 (06.11.2019) 00:38
+[*] Added tracking for Minor Vulnerability when applied via Swarm and its morphs
+[*] Removed bundled Libraries. You will need to install [URL="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL] separately, if you haven't done so already.
+[*] Removed unnecessary white spaces.

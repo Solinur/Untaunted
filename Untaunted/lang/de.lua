@@ -1,12 +1,12 @@
 ﻿-- Menu --
 
 SafeAddString(SI_COMBAT_METRICS_LANG, "de", 1)
-SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "Accountweite Einstellungen", 1) 
-SafeAddString(SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP, "Auswählen die Einstellungen mit allen Chars zu teilen.", 1) 
-SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON, "Bewegen", 1) 
-SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP, "Klicken, um die Anzeigen ziehen zu können", 1) 
-SafeAddString(SI_UNTAUNTED_MENU_WINDOW_WIDTH, "Breite", 1) 
-SafeAddString(SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP, "Breite der Anzeige", 1) 
+SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "Accountweite Einstellungen", 1)
+SafeAddString(SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP, "Auswählen die Einstellungen mit allen Chars zu teilen.", 1)
+SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON, "Bewegen", 1)
+SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP, "Klicken, um die Anzeigen ziehen zu können", 1)
+SafeAddString(SI_UNTAUNTED_MENU_WINDOW_WIDTH, "Breite", 1)
+SafeAddString(SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP, "Breite der Anzeige", 1)
 SafeAddString(SI_UNTAUNTED_MENU_WINDOW_HEIGHT, "Höhe", 1)
 SafeAddString(SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP, "Höhe der Anzeige", 1)
 SafeAddString(SI_UNTAUNTED_MENU_GROWTH_DIRECTION, "Neue Anzeigen oben anfügen", 1)

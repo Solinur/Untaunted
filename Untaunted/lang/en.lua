@@ -1,14 +1,14 @@
 ﻿local strings = {
-	
+
 	-- Menu --
 
 	SI_UNTAUNTED_LANG = "en", 	-- "en"
-	SI_UNTAUNTED_MENU_AW_NAME = "Use Accountwide Settings", 	-- "Use Accountwide Settings" 
-	SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP = "If chosen all characters on this account will have the same Settings", 	-- "If chosen all characters on this account will have the same Settings" 
-	SI_UNTAUNTED_MENU_MOVE_BUTTON = "Move", 	-- "Move" 
-	SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP = "Move the taunt frames", 	-- "Move the taunt frames" 
-	SI_UNTAUNTED_MENU_WINDOW_WIDTH = "Width", 	-- "Width" 
-	SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP = "Sets the width of the taunt frames", 	-- "Sets the width of the taunt frames" 
+	SI_UNTAUNTED_MENU_AW_NAME = "Use Accountwide Settings", 	-- "Use Accountwide Settings"
+	SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP = "If chosen all characters on this account will have the same Settings", 	-- "If chosen all characters on this account will have the same Settings"
+	SI_UNTAUNTED_MENU_MOVE_BUTTON = "Move", 	-- "Move"
+	SI_UNTAUNTED_MENU_MOVE_BUTTON_TOOLTIP = "Move the taunt frames", 	-- "Move the taunt frames"
+	SI_UNTAUNTED_MENU_WINDOW_WIDTH = "Width", 	-- "Width"
+	SI_UNTAUNTED_MENU_WINDOW_WIDTH_TOOLTIP = "Sets the width of the taunt frames", 	-- "Sets the width of the taunt frames"
 	SI_UNTAUNTED_MENU_WINDOW_HEIGHT = "Height", 	-- "Height"
 	SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP = "Sets the height of the taunt frames", 	-- "Sets the height of the taunt frames"
 	SI_UNTAUNTED_MENU_GROWTH_DIRECTION = "Add Frames Upwards", 	-- "Add Frames Upwards"
