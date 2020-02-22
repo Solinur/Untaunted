@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.22"
+Untaunted.version 	= "0.2.23"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end

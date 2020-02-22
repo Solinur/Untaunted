@@ -130,3 +130,6 @@ Bugfix
 [*] Added tracking for Minor Vulnerability when applied via Swarm and its morphs
 [*] Removed bundled Libraries. You will need to install [URL="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL] separately, if you haven't done so already.
 [*] Removed unnecessary white spaces.
+
+0.2.23: DL: 191,573 (22.02.2020) 23:17
+[*] API Bump to Harrowstorm (100030)
