@@ -1,6 +1,6 @@
 ﻿-- Menu --
 
-SafeAddString(SI_COMBAT_METRICS_LANG, "de", 1)
+SafeAddString(SI_UNTAUNTED_LANG, "de", 1)
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "Accountweite Einstellungen", 1)
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP, "Auswählen die Einstellungen mit allen Chars zu teilen.", 1)
 SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON, "Bewegen", 1)
@@ -11,6 +11,8 @@ SafeAddString(SI_UNTAUNTED_MENU_WINDOW_HEIGHT, "Höhe", 1)
 SafeAddString(SI_UNTAUNTED_MENU_WINDOW_HEIGHT_TOOLTIP, "Höhe der Anzeige", 1)
 SafeAddString(SI_UNTAUNTED_MENU_GROWTH_DIRECTION, "Neue Anzeigen oben anfügen", 1)
 SafeAddString(SI_UNTAUNTED_MENU_GROWTH_DIRECTION_TOOLTIP, "Wenn ausgewählt, werden neue Spott-Anzeigen oberhalb der bestehenden hinzugefügt", 1)
+SafeAddString(SI_UNTAUNTED_MENU_MAX_BARS, "Max. Coundownleisten",  1)
+SafeAddString(SI_UNTAUNTED_MENU_MAX_BARS_TOOLTIP, "Maximal angezeigte Anzahl der Coundownleisten",  1)
 SafeAddString(SI_UNTAUNTED_MENU_BAR_DIRECTION, "Countdown nach rechts", 1)
 SafeAddString(SI_UNTAUNTED_MENU_BAR_DIRECTION_TOOLTIP, "Wenn ausgewählt, wird die Coundownleiste nach rechts hin kleiner während der Spott läuft, sonst nach links hin", 1)
 SafeAddString(SI_UNTAUNTED_MENU_SHOWMARKER, "Zeige Markierungen über Gegnern", 1)

@@ -133,3 +133,7 @@ Bugfix
 
 0.2.23: DL: 191,573 (22.02.2020) 23:17
 [*] API Bump to Harrowstorm (100030)
+
+0.2.24: DL: 199,482 (25.02.2020) 22:55
+[*] Added french translation provided by MU-TH-UR
+[*] Removed Libstub from dependencies. (Thx to crondira for the report)
