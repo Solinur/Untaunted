@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.24"
+Untaunted.version 	= "0.2.25"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -487,24 +487,27 @@ local defaults = {
 		{38541, true}, 		-- Taunt
 		{62787, false}, 	-- Major Breach
 		{81519, false}, 	-- Minor Vulnerability
-		{88604, false}, 	-- Minor Lifesteal
+		{33541, false}, 	-- Minor Lifesteal
 		{17906, false}, 	-- Crusher
 		{62988, false}, 	-- Off Balance
-		{102771, false}, 	-- Off Balance Immunity
+		{134599, false}, 	-- Off Balance Immunity
 		{17945, false}, 	-- Weakening
 		{40224, false}, 	-- Aggresive Horn
 		{64144, false}, 	-- Minor Fracture (PotL)
 		{68588, false}, 	-- Minor Breach (PotL)
 		{21763, false}, 	-- Power of the Light
+		{44373, false}, 	-- Burning Embers
+		{127070, false}, 	-- Way of Martial Knowledge
+		{126597, false}, 	-- Touch of Z'en
 	}
 }
 
 AbilityCopies = {
 
-		[81519] = {68359, 130155, 130168, 130173}, 				-- Minor Vulnerability
-		[88604] = {88634, 88575, 88565, 88606}, 				-- Minor Lifesteal
-		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 	-- Minor Fracture
-		[68588] = {79086, 79087, 79284, 79306, 108825}, 		-- Minor Breach
+		[81519] = {68359, 130155, 130168, 130173; 130809}, 																-- Minor Vulnerability
+		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 	-- Minor Lifesteal
+		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 															-- Minor Fracture
+		[68588] = {79086, 79087, 79284, 79306, 108825}, 																-- Minor Breach
 
 }
 

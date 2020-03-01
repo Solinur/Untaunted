@@ -137,3 +137,7 @@ Bugfix
 0.2.24: DL: 199,482 (25.02.2020) 22:55
 [*] Added french translation provided by MU-TH-UR
 [*] Removed Libstub from dependencies. (Thx to crondira for the report)
+
+0.2.25: DL: 208,270 (01.03.2020) 12:15
+[*] Added tracking for Burning Embers, Touch of Z'en and Martial Knowledge
+[*] Small fixes

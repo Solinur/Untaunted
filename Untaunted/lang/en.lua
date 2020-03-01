@@ -22,7 +22,7 @@
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER = "Only Player Effects", 	-- "Only Player Effects"
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP = "Select to track only Player Effects", 	-- "Select to track only Player Effects"
 	SI_UNTAUNTED_MENU_TRACK = "Track %s", 	-- e.g. "Track Taunt"
-	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunts"
+	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunt"
 }
 
 for stringId, stringValue in pairs(strings) do
