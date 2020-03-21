@@ -138,6 +138,9 @@ Bugfix
 [*] Added french translation provided by MU-TH-UR
 [*] Removed Libstub from dependencies. (Thx to crondira for the report)
 
-0.2.25: DL: 208,270 (01.03.2020) 12:15
+0.2.25: DL: 208,274 (01.03.2020) 12:15
 [*] Added tracking for Burning Embers, Touch of Z'en and Martial Knowledge
 [*] Small fixes
+
+0.2.26: DL: 220,017 (21.03.2020) 12:38
+[*] Added tracking for Minor Magickasteal

@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.25"
+Untaunted.version 	= "0.2.26"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -488,6 +488,7 @@ local defaults = {
 		{62787, false}, 	-- Major Breach
 		{81519, false}, 	-- Minor Vulnerability
 		{33541, false}, 	-- Minor Lifesteal
+		{39100, false}, 	-- Minor Magickasteal
 		{17906, false}, 	-- Crusher
 		{62988, false}, 	-- Off Balance
 		{134599, false}, 	-- Off Balance Immunity
