@@ -133,7 +133,7 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	local label = item:GetNamedChild("Label")
 
 	label:SetText(zo_strformat("<<!aC:1>>",unitname))
-	label:SetFont("EsoUi/Common/Fonts/Univers57.otf".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
+	label:SetFont("$(MEDIUM_FONT)".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
 
 	local bg = item:GetNamedChild("Bg")
 
@@ -151,7 +151,7 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	local timer = item:GetNamedChild("Timer")
 
 	timer:SetHeight(db.window.height)
-	timer:SetFont("EsoUi/Common/Fonts/Univers57.otf".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
+	timer:SetFont("$(MEDIUM_FONT)".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
 	timer:SetText("15.0")
 
 	lastanchor[2].anchored = item  -- stores a reference to the item at the item it is anchored to. This is needed when redirecting anchors when an item is removed (see below)
