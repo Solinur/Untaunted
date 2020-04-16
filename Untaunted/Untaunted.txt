@@ -1,8 +1,8 @@
-﻿## Title: Untaunted
+## Title: Untaunted
 ## APIVersion: 100030
 ## Author: Solinur/decay
-## Version: 0.2.26
-## AddOnVersion: 226
+## Version: 0.2.27
+## AddOnVersion: 227
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: 
 ## SavedVariables: Untaunted_Save
@@ -17,4 +17,6 @@ lang\en.lua
 lang\$(language).lua
 
 Untaunted.lua
+
+bindings.xml
 Untaunted.xml

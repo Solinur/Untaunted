@@ -1,4 +1,4 @@
-﻿-- Menu --
+-- Menu --
 
 SafeAddString(SI_UNTAUNTED_LANG, "de", 1)
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "Accountweite Einstellungen", 1)

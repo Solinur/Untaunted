@@ -144,3 +144,8 @@ Bugfix
 
 0.2.26: DL: 220,017 (21.03.2020) 12:38
 [*] Added tracking for Minor Magickasteal
+
+0.2.27: DL: 233,854 (16.04.2020) 20:06
+[*] Added a fix and and an update of japanese localisation provided by Calamath
+[*] Added option to set size of enemy markers
+[*] Added keybind to toggle an increase the size of enemy markers by factor of 2.5

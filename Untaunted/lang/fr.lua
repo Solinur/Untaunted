@@ -1,4 +1,4 @@
-﻿-- Menu --
+-- Menu --
 
 SafeAddString(SI_UNTAUNTED_LANG, "fr",  1)	-- "fr"
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "Utiliser un réglage unifié au niveau du compte",  1)	-- "Use Accountwide Settings"

@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.26"
+Untaunted.version 	= "0.2.27"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -477,6 +477,7 @@ local defaults = {
 
 	["window"] 				= {x=150*dx,y=150*dx,height=zo_round(25/dx)*dx,width=zo_round(300/dx)*dx},
 	["showmarker"] 			= false,
+	["markersize"] 			= 26,
 	["growthdirection"] 	= false, --false=down
 	["maxbars"] 			= 15, --false=down
 	["bardirection"] 		= false, --false=to the left
@@ -511,6 +512,31 @@ AbilityCopies = {
 		[68588] = {79086, 79087, 79284, 79306, 108825}, 																-- Minor Breach
 
 }
+
+local function SetMarker(size)
+
+	if db.showmarker ~= true then return end
+
+	SetFloatingMarkerInfo(MAP_PIN_TYPE_AGGRO, size, "Untaunted/textures/redarrow.dds")
+	SetFloatingMarkerGlobalAlpha(1)
+
+end
+
+function Untaunted.ToggleMarkerSize()
+
+	local isEnabled = not db.markerSizeToggleEnabled
+
+	db.markerSizeToggleEnabled = isEnabled
+	local newsize = (isEnabled and 2.5 or 1) * db.markersize
+
+	SetMarker(newsize)
+
+end
+
+local function OnPlayerActivated()
+
+	SetMarker(db.markersize)
+end
 
 local addonpanel
 
@@ -628,6 +654,22 @@ local function MakeMenu()
 			requiresReload = true,
 		},
 		{
+			type = "slider",
+			name = GetString(SI_UNTAUNTED_MENU_MARKERSIZE),
+			tooltip = GetString(SI_UNTAUNTED_MENU_MARKERSIZE_TOOLTIP),
+			min = 16,
+			max = 60,
+			step = 2,
+			default = def.markersize,
+			getFunc = function() return db.markersize end,
+			setFunc = function(value)
+
+				db.markersize = value
+				SetMarker(value)
+
+			end,
+		},
+		{
 			type = "checkbox",
 			name = GetString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER),
 			tooltip = GetString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP),
@@ -710,12 +752,6 @@ local function MakeMenu()
 	CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed", Untaunted.ClearItems )
 
 	return menu
-end
-
-function Untaunted.OnPlayerActivated()
-	if db.showmarker ~= true then return end
-	SetFloatingMarkerInfo(MAP_PIN_TYPE_AGGRO, 26, "Untaunted/textures/redarrow.dds")
-	SetFloatingMarkerGlobalAlpha(1)
 end
 
 local function UpdateAbilityTable()
@@ -807,7 +843,7 @@ function Untaunted:Initialize(event, addon)
 	em:RegisterForEvent(name.."_combat", EVENT_PLAYER_COMBAT_STATE, OnCombatState)
 	em:RegisterForEvent(name.."_target", EVENT_RETICLE_TARGET_CHANGED , OnTargetChange)
 
-	em:RegisterForEvent(name.."active", EVENT_PLAYER_ACTIVATED, self.OnPlayerActivated)
+	em:RegisterForEvent(name.."active", EVENT_PLAYER_ACTIVATED, OnPlayerActivated)
 
 	self.playername = zo_strformat("<<!aC:1>>",GetUnitName("player"))
 	self.inCombat = IsUnitInCombat("player")

@@ -1,4 +1,4 @@
-﻿local strings = {
+local strings = {
 
 	-- Menu --
 
@@ -18,11 +18,17 @@
 	SI_UNTAUNTED_MENU_BAR_DIRECTION = "Invert Timer Bar", 	-- "Invert Timer Bar"
 	SI_UNTAUNTED_MENU_BAR_DIRECTION_TOOLTIP = "When selected, the timer bar gets reduced to the right", 	-- "When selected, the timer bar gets reduced to the right"
 	SI_UNTAUNTED_MENU_SHOWMARKER = "Show Enemy Markers", 	-- "Show Enemy Markers"
-	SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP = "Show markers (like group pins) over enemies you engaged in combat", 	-- "Show markers (like group pins) over enemies you engaged in combat"
+	SI_UNTAUNTED_MENU_SHOWMARKER_TOOLTIP = "Show markers (like group pins) over enemies you are engaged with in combat", 	-- "Show markers (like group pins) over enemies you engaged in combat"
+	SI_UNTAUNTED_MENU_MARKERSIZE = "Size of Enemy Markers", 	-- "Size of Enemy Markers"
+	SI_UNTAUNTED_MENU_MARKERSIZE_TOOLTIP = "Size of the markers over enemies you are engaged with in combat", 	-- "Size of the markers over enemies you are engaged with in combat"
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER = "Only Player Effects", 	-- "Only Player Effects"
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP = "Select to track only Player Effects", 	-- "Select to track only Player Effects"
 	SI_UNTAUNTED_MENU_TRACK = "Track %s", 	-- e.g. "Track Taunt"
 	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunt"
+
+	-- Keybinds --
+
+	SI_BINDING_NAME_UNTAUNTED_MARKERSIZE_TOGGLE = "Toggle size of Enemy Markers",
 }
 
 for stringId, stringValue in pairs(strings) do
