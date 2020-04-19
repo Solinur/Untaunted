@@ -126,6 +126,13 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	item.key = key
 	item.id = unitId
 
+	local height = db.window.height
+	local width = db.window.width
+
+	local fontsize = height-(4*dx)
+
+	local font = string.format("%s|$(KB_%s)|%s", GetString(SI_UNTAUNTED_FONT), fontsize, 'soft-shadow-thin')
+
 	item:SetHidden(false)
 	item:ClearAnchors()
 	item:SetAnchor(unpack(lastanchor))
@@ -133,25 +140,25 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	local label = item:GetNamedChild("Label")
 
 	label:SetText(zo_strformat("<<!aC:1>>",unitname))
-	label:SetFont("$(MEDIUM_FONT)".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
+	label:SetFont(font)
 
 	local bg = item:GetNamedChild("Bg")
 
 	bg:SetEdgeTexture("",1,1,dx,1)
 	bg:SetEdgeColor(1,1,0,1)
-	bg:SetDimensions(db.window.width,db.window.height)
+	bg:SetDimensions(width, height)
 
-	item:GetNamedChild("Bar"):SetDimensions(db.window.width-db.window.height-(zo_round(2/dx)*dx),db.window.height-(zo_round(2/dx)*dx))
+	item:GetNamedChild("Bar"):SetDimensions(width - height - (zo_round(2/dx)*dx), height - (zo_round(2/dx)*dx))
 
 	local icon = item:GetNamedChild("Icon")
 
-	icon:SetDimensions(db.window.height,db.window.height)
+	icon:SetDimensions(height, height)
 	icon:SetTexture(GetAbilityIcon(abilityId))
 
 	local timer = item:GetNamedChild("Timer")
 
-	timer:SetHeight(db.window.height)
-	timer:SetFont("$(MEDIUM_FONT)".."|"..db.window.height-(4*dx)..'|soft-shadow-thin')
+	timer:SetHeight(height)
+	timer:SetFont(font)
 	timer:SetText("15.0")
 
 	lastanchor[2].anchored = item  -- stores a reference to the item at the item it is anchored to. This is needed when redirecting anchors when an item is removed (see below)

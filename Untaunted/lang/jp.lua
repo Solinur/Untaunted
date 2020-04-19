@@ -4,6 +4,8 @@
 -- Menu --
 
 SafeAddString(SI_UNTAUNTED_LANG, "jp", 1)
+SafeAddString(SI_UNTAUNTED_FONT, "$(MEDIUM_FONT)", 1)
+
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME, "アカウント共通の設定を使う",  1)	-- "Use Accountwide Settings"
 SafeAddString(SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP, "選択すると、このアカウントのすべてのキャラクターが同じ設定になります",  1)	-- "If chosen all characters on this account will have the same Settings"
 SafeAddString(SI_UNTAUNTED_MENU_MOVE_BUTTON, "移動", 1)

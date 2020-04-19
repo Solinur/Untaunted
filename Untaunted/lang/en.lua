@@ -3,6 +3,8 @@ local strings = {
 	-- Menu --
 
 	SI_UNTAUNTED_LANG = "en", 	-- "en"
+	SI_UNTAUNTED_FONT = "$(MEDIUM_FONT)",
+
 	SI_UNTAUNTED_MENU_AW_NAME = "Use Accountwide Settings", 	-- "Use Accountwide Settings"
 	SI_UNTAUNTED_MENU_AW_NAME_TOOLTIP = "If chosen all characters on this account will have the same Settings", 	-- "If chosen all characters on this account will have the same Settings"
 	SI_UNTAUNTED_MENU_MOVE_BUTTON = "Move", 	-- "Move"
