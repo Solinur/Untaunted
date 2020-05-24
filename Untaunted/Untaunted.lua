@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.27"
+Untaunted.version 	= "0.2.28"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -131,7 +131,7 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 
 	local fontsize = height-(4*dx)
 
-	local font = string.format("%s|$(KB_%s)|%s", GetString(SI_UNTAUNTED_FONT), fontsize, 'soft-shadow-thin')
+	local font = string.format("%s|$(KB_%d)|%s", GetString(SI_UNTAUNTED_FONT), fontsize, 'soft-shadow-thin')
 
 	item:SetHidden(false)
 	item:ClearAnchors()
