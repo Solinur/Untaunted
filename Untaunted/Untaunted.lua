@@ -510,6 +510,8 @@ local defaults = {
 		{44373, false}, 	-- Burning Embers
 		{127070, false}, 	-- Way of Martial Knowledge
 		{126597, false}, 	-- Touch of Z'en
+		{122389, false}, 	-- Major Vulnerability
+		{132831, false}, 	-- Major Vulnerability Immunity
 	}
 }
 
@@ -521,6 +523,7 @@ AbilityCopies = {
 		[68588] = {79086, 79087, 79284, 79306, 108825}, 																							-- Minor Breach
 		[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014}, 	-- Off Balance
 		[62787] = {62485, 117818},   																												-- Major Breach
+		[122389] = {122397},   																														-- Major Vulnerability
 
 }
 
@@ -835,7 +838,7 @@ function Untaunted:Initialize(event, addon)
 		db.accountwide = false
 	end
 
-	if db.lastversion ~= Untaunted.version or true then UpdateAbilityTable() end
+	if db.lastversion ~= Untaunted.version then UpdateAbilityTable() end
 
 	Untaunted.debug = false
 	Untaunted.db = db
