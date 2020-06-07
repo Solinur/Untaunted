@@ -150,5 +150,9 @@ Bugfix
 [*] Added option to set size of enemy markers
 [*] Added keybind to toggle an increase the size of enemy markers by factor of 2.5
 
-0.2.28: DL: 250.973  (25.05.2020) 01:06
+0.2.28: DL: 250.973 (25.05.2020) 01:06
 [*] API Bump to Greymoor (100031)
+
+0.2.29: DL: 266.441 (07.06.2020) 21:17
+[*] Fixed some issues with Off Balance and Off Balance Immunity tracking (thx to Bisnacka for reporting and helping on that issue)
+[*] Added tracking for Major Vulnerability and its Immunity
