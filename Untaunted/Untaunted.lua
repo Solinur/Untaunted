@@ -267,7 +267,7 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 	--Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %s (%s)", changeType, effectType, beginTime, endTime, GetAbilityName(abilityId), unitName)
 	--Print("Eval: %s and %s",tostring(changeType~=1 and changeType~=2 and changeType~=3),tostring(effectType~=2 and effectType~=1))
 
-	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=102771) then return end
+	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=134599 and abilityId~=120014) then return end
 
 	local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", unitId, abilityId)
 
@@ -447,7 +447,7 @@ local function RegisterAbilities()
 
 			local addfilter = {}
 
-			if db.trackonlyplayer and id~=102771 then
+			if db.trackonlyplayer and id~=134599 then	-- Off Balance Immunity
 
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
@@ -470,6 +470,8 @@ local function RegisterAbilities()
 					local idstring = name.."_ability_"..id2
 
 					ActiveAbilityIdList[id2] = true
+
+					if id2 == 120014 then addfilter = {} end --  Off Balance of Trial Dummy
 
 					em:RegisterForEvent(idstring, EVENT_EFFECT_CHANGED, onTaunt)
 					em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id2, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter))
@@ -513,10 +515,12 @@ local defaults = {
 
 AbilityCopies = {
 
-		[81519] = {68359, 130155, 130168, 130173; 130809}, 																-- Minor Vulnerability
-		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 	-- Minor Lifesteal
-		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 															-- Minor Fracture
-		[68588] = {79086, 79087, 79284, 79306, 108825}, 																-- Minor Breach
+		[81519] = {68359, 130155, 130168, 130173, 130809, 130155}, 																							-- Minor Vulnerability
+		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 								-- Minor Lifesteal
+		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 																						-- Minor Fracture
+		[68588] = {79086, 79087, 79284, 79306, 108825}, 																							-- Minor Breach
+		[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014}, 	-- Off Balance
+		[62787] = {62485, 117818},   																												-- Major Breach
 
 }
 
@@ -831,7 +835,7 @@ function Untaunted:Initialize(event, addon)
 		db.accountwide = false
 	end
 
-	if db.lastversion ~= Untaunted.version then UpdateAbilityTable() end
+	if db.lastversion ~= Untaunted.version or true then UpdateAbilityTable() end
 
 	Untaunted.debug = false
 	Untaunted.db = db
