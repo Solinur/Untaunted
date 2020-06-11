@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.29"
+Untaunted.version 	= "0.2.30"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -518,12 +518,13 @@ local defaults = {
 AbilityCopies = {
 
 		[81519] = {68359, 130155, 130168, 130173, 130809, 130155}, 																							-- Minor Vulnerability
-		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 								-- Minor Lifesteal
-		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 																						-- Minor Fracture
-		[68588] = {79086, 79087, 79284, 79306, 108825}, 																							-- Minor Breach
+		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 										-- Minor Lifesteal
+		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 																								-- Minor Fracture
+		[68588] = {79086, 79087, 79284, 79306, 108825}, 																									-- Minor Breach
 		[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014}, 	-- Off Balance
-		[62787] = {62485, 117818},   																												-- Major Breach
-		[122389] = {122397},   																														-- Major Vulnerability
+		[62787] = {62485, 117818},   																														-- Major Breach
+		[122389] = {122397},   																																-- Major Vulnerability
+		[39100] = {26220,26809,88576,125316},   																											-- Minor Magickasteal
 
 }
 

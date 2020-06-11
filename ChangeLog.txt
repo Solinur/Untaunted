@@ -156,3 +156,6 @@ Bugfix
 0.2.29: DL: 266.441 (07.06.2020) 21:17
 [*] Fixed some issues with Off Balance and Off Balance Immunity tracking (thx to Bisnacka for reporting and helping on that issue)
 [*] Added tracking for Major Vulnerability and its Immunity
+
+0.2.30: DL: 275.817 (11.06.2020) 20:00
+[*] Added tracking for some sources of Minor Magickasteal
