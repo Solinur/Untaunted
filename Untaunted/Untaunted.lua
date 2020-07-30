@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.3.0"
+Untaunted.version 	= "1.0.0"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -784,7 +784,10 @@ local function MakeMenu()
 		name = GetString(SI_UNTAUNTED_MENU_CUSTOM),
 		tooltip = GetString(SI_UNTAUNTED_MENU_CUSTOM_TOOLTIP),
 		getFunc = function() return table.concat(db.customabilities, ",") end,
-		setFunc = function(text) db.customabilities = splitCSV(text) end,
+		setFunc = function(text) 
+			db.customabilities = splitCSV(text)			
+			RegisterAbilities()
+		end,
 		isMultiline = true,
 		isExtraWide = true,
 		maxChars = 3000, -- number (optional)

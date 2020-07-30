@@ -160,5 +160,5 @@ Bugfix
 0.2.30: DL: 275.817 (11.06.2020) 20:00
 [*] Added tracking for some sources of Minor Magickasteal
 
-0.3.0: DL: 275.817 (11.06.2020) 20:00
-[*] Added option to add custom abilityIDs in a comma separated list
+1.0.0: DL: 295.593 (30.07.2020) 23:43
+[*] Added option to add custom abilityIDs
