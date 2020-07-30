@@ -14,12 +14,27 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "0.2.30"
+Untaunted.version 	= "0.3.0"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
 	df("[%s] %s", Untaunted.name, message:format(...))
 end
+
+local function splitCSV(text)
+
+	local fields = {}
+
+	text:gsub("([^,]+)", function(result)
+
+		result = tonumber(result)
+		fields[#fields+1] = result and math.floor(result) or nil
+
+	end)
+
+	return fields
+
+ end
 
 local pool = ZO_ObjectPool:New(function(objectPool)
 
@@ -328,6 +343,19 @@ local function OnUnitDeath(_, result, _, _, _, _, _, _, targetName, targetType, 
 
 		end
 	end
+
+	for i, id in pairs(db.customabilities) do
+
+		local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", targetUnitId, id)
+
+		local key = tauntlist[idkey]
+
+		if key ~= nil then
+
+			pool:ReleaseObject(key)
+
+		end
+	end
 end
 
 local function Cleanup()
@@ -480,6 +508,33 @@ local function RegisterAbilities()
 			end
 		end
 	end
+
+	for i, id in pairs(db.customabilities) do
+
+		em:UnregisterForEvent(name.."_ability_"..id)
+
+	end
+
+	for i, id in pairs(db.customabilities) do
+
+		local idstring = name.."_ability_"..id
+
+		em:RegisterForEvent(idstring, EVENT_EFFECT_CHANGED, onTaunt)
+
+		local addfilter = {}
+
+		if db.trackonlyplayer and id~=134599 then	-- Off Balance Immunity
+
+			table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
+			table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
+
+		end
+
+		em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) -- Taunt: 38541, Elemental Drain: 62795
+
+		ActiveAbilityIdList[id] = true
+
+	end
 end
 
 local defaults = {
@@ -512,7 +567,9 @@ local defaults = {
 		{126597, false}, 	-- Touch of Z'en
 		{122389, false}, 	-- Major Vulnerability
 		{132831, false}, 	-- Major Vulnerability Immunity
-	}
+	},
+	["customabilities"] 	= {}
+
 }
 
 AbilityCopies = {
@@ -720,6 +777,21 @@ local function MakeMenu()
 		table.insert(options, entry)
 
 	end
+
+	options[#options+1] = {
+
+		type = "editbox",
+		name = GetString(SI_UNTAUNTED_MENU_CUSTOM),
+		tooltip = GetString(SI_UNTAUNTED_MENU_CUSTOM_TOOLTIP),
+		getFunc = function() return table.concat(db.customabilities, ",") end,
+		setFunc = function(text) db.customabilities = splitCSV(text) end,
+		isMultiline = true,
+		isExtraWide = true,
+		maxChars = 3000, -- number (optional)
+		textType = TEXT_TYPE_ALL, -- number (optional) or function returning a number. Valid TextType numbers: TEXT_TYPE_ALL, TEXT_TYPE_ALPHABETIC, TEXT_TYPE_ALPHABETIC_NO_FULLWIDTH_LATIN, TEXT_TYPE_NUMERIC, TEXT_TYPE_NUMERIC_UNSIGNED_INT, TEXT_TYPE_PASSWORD
+		width = "full", -- or "half" (optional)
+		default = table.concat(def.customabilities, ","), -- default value or function that returns the default value (optional)
+	}
 
 	menu:RegisterOptionControls("Untaunted_Options", options)
 

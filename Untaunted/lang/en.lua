@@ -27,6 +27,8 @@ local strings = {
 	SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP = "Select to track only Player Effects", 	-- "Select to track only Player Effects"
 	SI_UNTAUNTED_MENU_TRACK = "Track %s", 	-- e.g. "Track Taunt"
 	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunt"
+	SI_UNTAUNTED_MENU_CUSTOM = "Custom Abilities", 	-- "Custom Abilities"
+	SI_UNTAUNTED_MENU_CUSTOM_TOOLTIP = 'Allows you to add custom ability IDs as a comma separated list (e.g. "12345, 23456, 99999")', 	-- "Allows you to add custom ability IDs"
 
 	-- Keybinds --
 
