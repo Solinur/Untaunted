@@ -40,4 +40,4 @@ Let me know if you like it and if you have features you miss.
 Thanks to [@sirinsidiator](http://www.esoui.com/forums/member.php?action=getinfo&userid=5815) for his [Addon tutorial series](http://www.esoui.com/forums/showthread.php?t=6399), which was particularly useful for this Addon. 
 Also thanks to [@Ayantir](http://www.esoui.com/forums/member.php?action=getinfo&userid=12247) for helping to get rid of an anonymous function.
 
-*Decay2 aka Solinur (Pact EU)*
+*Solinur (EU)*

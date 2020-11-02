@@ -162,3 +162,6 @@ Bugfix
 
 1.0.0: DL: 295.593 (30.07.2020) 23:43
 [*] Added option to add custom abilityIDs
+
+1.0.1: DL: 321.216 (03.11.2020) 00:14
+[*] API Bump to Markarth (100033)
