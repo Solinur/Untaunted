@@ -13,32 +13,32 @@
 0.1.5: DL:640 (04.10.2016, 01:07)
 [*] Included the texture for target markers that I forgot to add before. Sorry! (Note that you will always get a marker on every enemy NPC you are in a fight with, not just the ones you taunted. This is a limitation by the API)
 
-0.1.6: DL: 1,076 (15.10.2016, 15:00)
+0.1.6: 1,076 (15.10.2016, 15:00)
 [*] Added Japanese and German translations
 
-0.1.6_fix: DL: 1,288 (16.10.2016, 15:34)
+0.1.6_fix: 1,288 (16.10.2016, 15:34)
 [*] Readded texture for the markers on enemies. (Sorry I forgot them agian :( )
 
-0.1.7: DL: 1,852 (24.10.2016, 23:10)
+0.1.7: 1,852 (24.10.2016, 23:10)
 [*] Implemented a fix that discards targets when the taunt runs out but no event is sent from the API (thx @manavortex for reporting)
 
-0.1.8: DL: 2,353 (01.11.2016, 21:06)
+0.1.8: 2,353 (01.11.2016, 21:06)
 [*] Updated LibAddonMenu to version 2.0 r23
 
-0.1.9: DL: 2,674 (03.11.2016, 23:57)
+0.1.9: 2,674 (03.11.2016, 23:57)
 [*] Fixed a critical bug that would constantly throw error messages for players that used high UIscale Settings.
 
-0.1.10: DL: 3,506 (26.11.2016, 00:59)
+0.1.10: 3,506 (26.11.2016, 00:59)
 [*] Fixed a bug that could cause an error message. 
 [*] Added an option to track elemental drain instead of taunt (Requested by @Geckox)
 
-0.2.0: DL: 4,715 (31.12.2016, 13:51)
+0.2.0: 4,715 (31.12.2016, 13:51)
 [*] Added individual settings per character
 [*] Changed how different debuffs are tracked: Each can now be switched on and off. Instead of the skull symbol the debuff icon will now be shown.
 [*] Added tracking for Infallible Aether and Siphon Spirit
 [*] Note: More debuffs for tracking could be added per request. If there is a need for it I might add a way to manually add more debuffs to track. However I do not intend to increase the scope of the addon to a point where you have multiple UI areas or customizations per ability. It is supposed to be a simple addon to track a single or at most few selected debuffs)
 
-0.2.1: DL: 5,075 (02.01.2017, 15:58)
+0.2.1: 5,075 (02.01.2017, 15:58)
 [*] Fixed a bug where the timer would not refresh for Infallible Aether correctly.
 [*] Fixed a bug where that caused a lua error
 [*] Fixed a bug that prevented the reticleover effect from showing
@@ -46,122 +46,126 @@
 0.2.2
 Bugfix
 
-0.2.3: DL: 5,260 (03.01.2017, 00:17)
+0.2.3: 5,260 (03.01.2017, 00:17)
 Bugfix
 
-0.2.4: DL: 6,645 (05.02.2017, 15:58)
+0.2.4: 6,645 (05.02.2017, 15:58)
 [*] API Bump to Homestead (100018)
 
-0.2.5: DL: 8,644 (21.03.2017, 22:42)
+0.2.5: 8,644 (21.03.2017, 22:42)
 [*] Added Minor Vulnerability to trackable debuffs.
 [*] Added Warhorn as a trackable debuff. 
 [*] Added an option to only those debuffs that were cast by the player.
 [*] Prevent showing tracked debuffs on players. (Yes, the Mage can apply Minor Vulnerability too!)
 [*] Note: An option to show debuffs applied by others in a different style will be added in a later patch. 
 
-0.2.6: DL: 12,261 (22.05.2017, 22:39)
+0.2.6: 12,261 (22.05.2017, 22:39)
 [*] API Bump to Morrowind (100019)
 [*] Activated enemy markers again. (No clue why I disabled it.)
 
-0.2.7: DL: 17,788 (13.08.2017) 20:40
+0.2.7: 17,788 (13.08.2017) 20:40
 [*] Removed enemy markers again. (It can crash the game. It can even cause you crashing when logging back in after a crash. I'll ask ZOS about it.)
 [*] API Bump to Horns of the Reach (100020)
 [*] Added support for Crusher debuff
 
-0.2.8: DL: 25,775 (05.01.2018) 19:55
+0.2.8: 25,775 (05.01.2018) 19:55
 [*] API Bump to Clockwork City (100021)
 [*] Updated LibAddonMenu to version 2.0 r25 to fix an issue
 
-0.2.9: DL: 30,544 (13.02.2018) 01:24
+0.2.9: 30,544 (13.02.2018) 01:24
 [*] Readded siphon spirit tracking
 [*] Added Off Balance and Weakening to trackable Debuffs
 
-0.2.10: DL: 34,978 (26.02.2018) 01:58
+0.2.10: 34,978 (26.02.2018) 01:58
 [*] fixed tracking for Siphon Spirit and added tracking for Quick Siphon
 [*] added tracking for Off Balance Immunity
 
-0.2.11: DL: 44,312 (21.05.2018) 15:50
+0.2.11: 44,312 (21.05.2018) 15:50
 [*] API Bump to Summerset (100023)
 [*] Update LAM to r26
 [*] Changed skill ids for Summerset.
 [*] Settings for tracked skills are reset. This is due ZOS changing the skill ids in this patch.
 
-0.2.12: DL: 49,581 (29.05.2018) 22:55
+0.2.12: 49,581 (29.05.2018) 22:55
 [*] Fix ""Add Frames Upwards" option. 
 
-0.2.13: DL: 59,051 (13.08.2018) 01:19
+0.2.13: 59,051 (13.08.2018) 01:19
 [*] API Bump to Wolfhunter (100024)
 
-0.2.13: DL: 59,051 (13.08.2018) 01:19
+0.2.13: 59,051 (13.08.2018) 01:19
 [*] skipped
 
-0.2.14: DL: 59,051 (13.08.2018) 01:19
+0.2.14: 59,051 (13.08.2018) 01:19
 [*] API Bump to Wolfhunter (100024)
 
-0.2.15: DL: 69,721 (21.10.2018) 19:55
+0.2.15: 69,721 (21.10.2018) 19:55
 [*] API Bump to Murkmire (100025)
 [*] Reimplemented the enemy markers (red arrows) since ZOS fixed the potential crash related to this function.
 
-0.2.16: DL: 83,036 (22.01.2018)
+0.2.16: 83,036 (22.01.2018)
 [*] API Bump to Wrathstone (100026)
 [*] Reorganized bundled libraries (Make sure to activate them in the Addon Panel)
 
-0.2.17: DL: 107,952 (19.05.2019) 21:30
+0.2.17: 107,952 (19.05.2019) 21:30
 [*] API Bump to Elsweyr (100027)
 [*] Updated Libs
 
-0.2.18: DL: 121,534 (07.06.2019) 22:25
+0.2.18: 121,534 (07.06.2019) 22:25
 [*] Improved internal structure a bit
 [*] Added tracking for Power of the Light
 
-0.2.19: DL: 127,845 (09.06.2019) 19:33
+0.2.19: 127,845 (09.06.2019) 19:33
 [*] Added tracking for Minor Breach and Minor Fracture (It probably makes more sense to track those instead of PotL)
 
-0.2.20: DL: 144,020 (12.08.2019) 00:03
+0.2.20: 144,020 (12.08.2019) 00:03
 [*] API Bump to Scalebreaker (100028)
 [*] Updated Libraries
 
-0.2.21: DL: 160,314 (20.10.2019) 23:02
+0.2.21: 160,314 (20.10.2019) 23:02
 [*] API Bump to Dragonhold (100029)
 [*] Info: The next update will remove bundled libraries.
 [*] Updated Libraries
 
-0.2.22: DL: 170,216 (06.11.2019) 00:38
+0.2.22: 170,216 (06.11.2019) 00:38
 [*] Added tracking for Minor Vulnerability when applied via Swarm and its morphs
 [*] Removed bundled Libraries. You will need to install [URL="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL] separately, if you haven't done so already.
 [*] Removed unnecessary white spaces.
 
-0.2.23: DL: 191,573 (22.02.2020) 23:17
+0.2.23: 191,573 (22.02.2020) 23:17
 [*] API Bump to Harrowstorm (100030)
 
-0.2.24: DL: 199,482 (25.02.2020) 22:55
+0.2.24: 199,482 (25.02.2020) 22:55
 [*] Added french translation provided by MU-TH-UR
 [*] Removed Libstub from dependencies. (Thx to crondira for the report)
 
-0.2.25: DL: 208,274 (01.03.2020) 12:15
+0.2.25: 208,274 (01.03.2020) 12:15
 [*] Added tracking for Burning Embers, Touch of Z'en and Martial Knowledge
 [*] Small fixes
 
-0.2.26: DL: 220,017 (21.03.2020) 12:38
+0.2.26: 220,017 (21.03.2020) 12:38
 [*] Added tracking for Minor Magickasteal
 
-0.2.27: DL: 233,854 (16.04.2020) 20:06
+0.2.27: 233,854 (16.04.2020) 20:06
 [*] Added a fix and and an update of japanese localisation provided by Calamath
 [*] Added option to set size of enemy markers
 [*] Added keybind to toggle an increase the size of enemy markers by factor of 2.5
 
-0.2.28: DL: 250.973 (25.05.2020) 01:06
+0.2.28: 250.973 (25.05.2020) 01:06
 [*] API Bump to Greymoor (100031)
 
-0.2.29: DL: 266.441 (07.06.2020) 21:17
+0.2.29: 266.441 (07.06.2020) 21:17
 [*] Fixed some issues with Off Balance and Off Balance Immunity tracking (thx to Bisnacka for reporting and helping on that issue)
 [*] Added tracking for Major Vulnerability and its Immunity
 
-0.2.30: DL: 275.817 (11.06.2020) 20:00
+0.2.30: 275.817 (11.06.2020) 20:00
 [*] Added tracking for some sources of Minor Magickasteal
 
-1.0.0: DL: 295.593 (30.07.2020) 23:43
+1.0.0: 295.593 (30.07.2020) 23:43
 [*] Added option to add custom abilityIDs
 
-1.0.1: DL: 321.216 (03.11.2020) 00:14
+1.0.1: 321.216 (03.11.2020) 00:14
 [*] API Bump to Markarth (100033)
+
+1.0.2: 326.295 (03.11.2020) 11:13
+[*] Fixed issues with Major Breach and Minor Magickasteal when beeing applied via Elemental Drain. 
+[*] Note: Something weird is going on with Minor Magickasteal and I put together a workaround for now, but it will not only track the players casts but every source (incl. group members, other players). I'm not sure if that leads to unexpected behaviour.

@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.0.1"
+Untaunted.version 	= "1.0.2"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -282,7 +282,8 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 	--Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %s (%s)", changeType, effectType, beginTime, endTime, GetAbilityName(abilityId), unitName)
 	--Print("Eval: %s and %s",tostring(changeType~=1 and changeType~=2 and changeType~=3),tostring(effectType~=2 and effectType~=1))
 
-	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=134599 and abilityId~=120014) then return end
+	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=134599 and abilityId~=120014 and abilityId~=88401) then return end
+	if changeType == 1 and abilityId == 88401 then return end
 
 	local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", unitId, abilityId)
 
@@ -475,7 +476,7 @@ local function RegisterAbilities()
 
 			local addfilter = {}
 
-			if db.trackonlyplayer and id~=134599 then	-- Off Balance Immunity
+			if db.trackonlyplayer and id ~= 134599 and id ~= 39100 then	-- Off Balance Immunity / Min9or Magickasteal
 
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
@@ -499,7 +500,7 @@ local function RegisterAbilities()
 
 					ActiveAbilityIdList[id2] = true
 
-					if id2 == 120014 then addfilter = {} end --  Off Balance of Trial Dummy
+					if id2 == 120014 or id2 == 88401 then addfilter = {} end --  Off Balance of Trial Dummy
 
 					em:RegisterForEvent(idstring, EVENT_EFFECT_CHANGED, onTaunt)
 					em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id2, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter))
@@ -535,6 +536,8 @@ local function RegisterAbilities()
 		ActiveAbilityIdList[id] = true
 
 	end
+
+	Untaunted.activeIds = ActiveAbilityIdList -- debug exposure
 end
 
 local defaults = {
@@ -579,9 +582,9 @@ AbilityCopies = {
 		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 																								-- Minor Fracture
 		[68588] = {79086, 79087, 79284, 79306, 108825}, 																									-- Minor Breach
 		[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014}, 	-- Off Balance
-		[62787] = {62485, 117818},   																														-- Major Breach
+		[62787] = {61743, 62485, 117818},   																														-- Major Breach
 		[122389] = {122397},   																																-- Major Vulnerability
-		[39100] = {26220,26809,88576,125316},   																											-- Minor Magickasteal
+		[39100] = {26220,26809,88576,125316,88401},   																											-- Minor Magickasteal
 
 }
 
