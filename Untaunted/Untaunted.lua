@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.0.2"
+Untaunted.version 	= "1.0.3"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -553,23 +553,21 @@ local defaults = {
 	["trackedabilities"] 	= {
 
 		{38541, true}, 		-- Taunt
-		{62787, false}, 	-- Major Breach
-		{81519, false}, 	-- Minor Vulnerability
-		{33541, false}, 	-- Minor Lifesteal
-		{39100, false}, 	-- Minor Magickasteal
 		{17906, false}, 	-- Crusher
+		{68588, false}, 	-- Minor Breach (PotL)
+		{62787, false}, 	-- Major Breach
+		{80020, false}, 	-- Minor Lifesteal
+		{39100, false}, 	-- Minor Magickasteal
+		{81519, false}, 	-- Minor Vulnerability
+		{122389, false}, 	-- Major Vulnerability
 		{62988, false}, 	-- Off Balance
 		{134599, false}, 	-- Off Balance Immunity
 		{17945, false}, 	-- Weakening
 		{40224, false}, 	-- Aggresive Horn
-		{64144, false}, 	-- Minor Fracture (PotL)
-		{68588, false}, 	-- Minor Breach (PotL)
 		{21763, false}, 	-- Power of the Light
 		{44373, false}, 	-- Burning Embers
 		{127070, false}, 	-- Way of Martial Knowledge
 		{126597, false}, 	-- Touch of Z'en
-		{122389, false}, 	-- Major Vulnerability
-		{132831, false}, 	-- Major Vulnerability Immunity
 	},
 	["customabilities"] 	= {}
 
@@ -577,14 +575,22 @@ local defaults = {
 
 AbilityCopies = {
 
-		[81519] = {68359, 130155, 130168, 130173, 130809, 130155}, 																							-- Minor Vulnerability
-		[33541] = {40110, 40117, 80015, 80017, 80020, 80021, 86304, 86305, 86306, 86307, 88565, 88575, 88606, 92653}, 										-- Minor Lifesteal
-		[64144] = {79090, 79091, 79309, 79311, 60416, 84358}, 																								-- Minor Fracture
-		[68588] = {79086, 79087, 79284, 79306, 108825}, 																									-- Minor Breach
-		[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014}, 	-- Off Balance
-		[62787] = {61743, 62485, 117818},   																														-- Major Breach
-		[122389] = {122397},   																																-- Major Vulnerability
-		[39100] = {26220,26809,88576,125316,88401},   																											-- Minor Magickasteal
+	-- Minor Vulnerability
+	[81519] = {51434, 61782, 68359, 79715, 79717, 79720, 79723, 79726, 79843, 79844, 79845, 79846, 117025, 118613, 120030, 124803, 124804, 124806, 130155, 130168, 130173, 130809},
+	-- Minor Lifesteal
+	[80020] = {86304, 86305, 86307, 88565, 88575, 88606, 92653, 121634, 148043},
+	-- Minor Fracture
+	[64144] = {79090, 79091, 79309, 79311, 60416, 84358},
+	-- Minor Breach
+	[68588] = {38688, 61742, 83031, 84358, 108825, 120019, 126685, 146908},
+	-- Off Balance
+	[62988] = {62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014},
+	-- Major Breach
+	[62787] = {28307, 33363, 34386, 36972, 36980, 40254, 48946, 53881, 61743, 62474, 62485, 62775, 78609, 85362, 91175, 91200, 100988, 108951, 111788, 117818, 118438, 120010},
+	-- Major Vulnerability
+	[122389] = {106754, 106755, 106758, 106760, 106762, 122177, 122397},
+	-- Minor Magickasteal
+	[39100] = {26220, 26809, 88401, 88402, 88576, 125316, 148044},
 
 }
 
@@ -787,8 +793,8 @@ local function MakeMenu()
 		name = GetString(SI_UNTAUNTED_MENU_CUSTOM),
 		tooltip = GetString(SI_UNTAUNTED_MENU_CUSTOM_TOOLTIP),
 		getFunc = function() return table.concat(db.customabilities, ",") end,
-		setFunc = function(text) 
-			db.customabilities = splitCSV(text)			
+		setFunc = function(text)
+			db.customabilities = splitCSV(text)
 			RegisterAbilities()
 		end,
 		isMultiline = true,

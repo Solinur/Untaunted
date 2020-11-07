@@ -169,3 +169,7 @@ Bugfix
 1.0.2: 326.295 (03.11.2020) 11:13
 [*] Fixed issues with Major Breach and Minor Magickasteal when beeing applied via Elemental Drain. 
 [*] Note: Something weird is going on with Minor Magickasteal and I put together a workaround for now, but it will not only track the players casts but every source (incl. group members, other players). I'm not sure if that leads to unexpected behaviour.
+
+1.0.3: 338.465 (07.11.2020) 23:00
+[*] Updated AbilityIds for Minor/Major Buffs which hopefully fixes most tracking issues. 
+[*] Note: Please check if all abilities you want to track are still set. Some settings might not carry over correctly.
