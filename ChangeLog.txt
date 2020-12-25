@@ -173,3 +173,7 @@ Bugfix
 1.0.3: 338.465 (07.11.2020) 23:00
 [*] Updated AbilityIds for Minor/Major Buffs which hopefully fixes most tracking issues. 
 [*] Note: Please check if all abilities you want to track are still set. Some settings might not carry over correctly.
+
+1.1.0: 358.779 (25.12.2020) 21:49
+[*] Buffs/Debuffs not cast by the player will be shown in darker/washed out colors.
+[*] Put tracking of Taunt Immunity back in. It got lost at some point, but the removal was unintended.
