@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.0.3"
+Untaunted.version 	= "1.1.0"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -79,7 +79,7 @@ local pool = ZO_ObjectPool:New(function(objectPool)
 		end
 	end)
 
-local function SetBarAnimation(control, duration) --This creates the bar animation (moving and color change)
+local function SetBarAnimation(control, duration, sourceType) --This creates the bar animation (moving and color change)
 
 	duration = duration or 15000
 
@@ -103,12 +103,16 @@ local function SetBarAnimation(control, duration) --This creates the bar animati
 
 	local color1 = timeline:InsertAnimation(ANIMATION_COLOR, control)
 
-	color1:SetColorValues(0,.8,0,1,.7,.7,0,1)
+	local gradient1 = sourceType == 1 and {0,0.8,0,1,0.7,0.7,0,1} or {0.3,0.5,0.3,1,0.5,0.5,0.2,1}
+
+	color1:SetColorValues(unpack(gradient1))
 	color1:SetDuration(duration/2)
 
 	local color2 = timeline:InsertAnimation(ANIMATION_COLOR, control, duration/2)
 
-	color2:SetColorValues(.7,.7,0,1,.8,0,0,1)
+	local gradient2 = sourceType == 1 and {0.7,0.7,0,1,0.8,0,0,1} or {0.5,0.5,0.2,1,0.5,0.3,0.3,1}
+
+	color2:SetColorValues(unpack(gradient2))
 	color2:SetDuration(duration/2)
 
 	return timeline
@@ -182,7 +186,7 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	return key
 end
 
-local function OnTauntStart(key, endTime, abilityId)  -- Prepare Animation, start it and set off the timer.
+local function OnTauntStart(key, endTime, abilityId, sourceType)  -- Prepare Animation, start it and set off the timer.
 
 	if key==nil or endTime==nil then return end
 
@@ -196,7 +200,7 @@ local function OnTauntStart(key, endTime, abilityId)  -- Prepare Animation, star
 	local bar = item:GetNamedChild("Bar")
 
 	if bar.timeline then bar.timeline:PlayInstantlyToStart() end
-	bar.timeline = SetBarAnimation(bar, duration)  -- setup
+	bar.timeline = SetBarAnimation(bar, duration, sourceType)  -- setup
 	bar.timeline:PlayFromStart()
 
 	local timer = item:GetNamedChild("Timer")
@@ -306,7 +310,7 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 
 		endTime = math.floor(endTime*1000)
 
-		OnTauntStart(key, endTime, abilityId)
+		OnTauntStart(key, endTime, abilityId, sourceType)
 
 		OnTargetChange()
 
@@ -476,7 +480,7 @@ local function RegisterAbilities()
 
 			local addfilter = {}
 
-			if db.trackonlyplayer and id ~= 134599 and id ~= 39100 then	-- Off Balance Immunity / Min9or Magickasteal
+			if db.trackonlyplayer and id ~= 134599 and id ~= 39100 and id~=52788 then	-- Off Balance Immunity / Minor Magickasteal / Taunt Immune
 
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
@@ -553,6 +557,7 @@ local defaults = {
 	["trackedabilities"] 	= {
 
 		{38541, true}, 		-- Taunt
+		{52788, true},		-- Taunt Immunity
 		{17906, false}, 	-- Crusher
 		{68588, false}, 	-- Minor Breach (PotL)
 		{62787, false}, 	-- Major Breach
