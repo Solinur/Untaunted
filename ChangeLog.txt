@@ -177,3 +177,6 @@ Bugfix
 1.1.0: 358.779 (25.12.2020) 21:49
 [*] Buffs/Debuffs not cast by the player will be shown in darker/washed out colors.
 [*] Put tracking of Taunt Immunity back in. It got lost at some point, but the removal was unintended.
+
+1.1.1: 383.591 (08.03.2021) 11:11
+[*] API Bump to Flames of Ambition (100034)
