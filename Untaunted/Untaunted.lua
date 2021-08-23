@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.1.1"
+Untaunted.version 	= "1.1.2"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -596,6 +596,8 @@ AbilityCopies = {
 	[122389] = {106754, 106755, 106758, 106760, 106762, 122177, 122397},
 	-- Minor Magickasteal
 	[39100] = {26220, 26809, 88401, 88402, 88576, 125316, 148044},
+	-- Taunt
+	[38541] = {38254},
 
 }
 

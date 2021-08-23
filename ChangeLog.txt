@@ -180,3 +180,7 @@ Bugfix
 
 1.1.1: 383.591 (08.03.2021) 11:11
 [*] API Bump to Flames of Ambition (100034)
+
+1.1.2: 424.834 (23.08.2021) 19:54
+[*] API Bump to Waking Flame (101031)
+[*] Adjust for changed abilityId for taunt
