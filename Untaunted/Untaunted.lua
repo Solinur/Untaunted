@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.1.2"
+Untaunted.version 	= "1.1.3"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -286,14 +286,14 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 	--Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %s (%s)", changeType, effectType, beginTime, endTime, GetAbilityName(abilityId), unitName)
 	--Print("Eval: %s and %s",tostring(changeType~=1 and changeType~=2 and changeType~=3),tostring(effectType~=2 and effectType~=1))
 
-	if (changeType~=1 and changeType~=2 and changeType~=3 and effectType~=2 and effectType~=1) or (sourceType~=1 and sourceType ~=2 and sourceType~=3 and abilityId~=134599 and abilityId~=120014 and abilityId~=88401) then return end
+	if (changeType~=EFFECT_RESULT_GAINED and changeType~=EFFECT_RESULT_FADED and changeType~=EFFECT_RESULT_UPDATED and effectType~=BUFF_EFFECT_TYPE_DEBUFF and effectType~=BUFF_EFFECT_TYPE_BUFF) or (sourceType~=COMBAT_UNIT_TYPE_PLAYER and sourceType ~=COMBAT_UNIT_TYPE_PLAYER_PET and sourceType~=COMBAT_UNIT_TYPE_GROUP and abilityId~=134599 and abilityId~=120014 and abilityId~=88401) then return end
 	if changeType == 1 and abilityId == 88401 then return end
 
 	local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", unitId, abilityId)
 
 	local key = tauntlist[idkey]
 
-	if changeType==1 or changeType==3 then
+	if changeType==EFFECT_RESULT_GAINED or changeType==EFFECT_RESULT_UPDATED then
 
 		if pool:GetActiveObjectCount() >= db.maxbars then return end
 
@@ -314,7 +314,7 @@ local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _, 
 
 		OnTargetChange()
 
-	elseif changeType==2 and key ~= nil then
+	elseif changeType==EFFECT_RESULT_FADED and key ~= nil then
 
 		tauntdata[endTime] = nil
 
@@ -480,7 +480,7 @@ local function RegisterAbilities()
 
 			local addfilter = {}
 
-			if db.trackonlyplayer and id ~= 134599 and id ~= 39100 and id~=52788 then	-- Off Balance Immunity / Minor Magickasteal / Taunt Immune
+			if db.trackonlyplayer and id ~= 134599 and id ~= 39100 and id ~= 52788 then	-- Off Balance Immunity / Minor Magickasteal / Taunt Immune
 
 				table.insert(addfilter, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE)
 				table.insert(addfilter, COMBAT_UNIT_TYPE_PLAYER)
@@ -494,7 +494,7 @@ local function RegisterAbilities()
 
 			end
 
-			em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) -- Taunt: 38541, Elemental Drain: 62795
+			em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter))
 
 			if AbilityCopies[id] then
 
@@ -535,7 +535,7 @@ local function RegisterAbilities()
 
 		end
 
-		em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter)) -- Taunt: 38541, Elemental Drain: 62795
+		em:AddFilterForEvent(idstring, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, id, REGISTER_FILTER_IS_ERROR, false, unpack(addfilter))
 
 		ActiveAbilityIdList[id] = true
 
@@ -833,7 +833,7 @@ local function MakeMenu()
 
 		for i=1,db.maxbars do
 
-			NewItem("Unit"..i, i, 38541)
+			NewItem("Unit"..i, i, 38254)
 
 		end
 	end
