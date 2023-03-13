@@ -1,5 +1,5 @@
 ## Title: Untaunted
-## APIVersion: 101031
+## APIVersion: 101037
 ## Author: Solinur
 ## Version: 1.1.3
 ## AddOnVersion: 10103
