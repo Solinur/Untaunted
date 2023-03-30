@@ -1,7 +1,6 @@
 <GuiXml>
 	<Controls>
 		<TopLevelControl name="Untaunted_TLW" clampedToScreen="true" hidden="true" resizeToFitDescendents="true">
-			<Dimensions x="247" y="200" />
 			<Anchor point="TOPLEFT" />
 			<Controls>
 				<Backdrop name="$(parent)Bg" inherits="ZO_DefaultBackdrop" hidden="true">

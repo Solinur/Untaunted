@@ -185,5 +185,8 @@ Bugfix
 [*] API Bump to Waking Flame (101031)
 [*] Adjust for changed abilityId for taunt
 
-1.1.3 495.906 (13.03.2023) 10:37
+1.1.3: 495.906 (13.03.2023) 10:37
 [*] Update for Scribes of Fate (API 101037)
+
+1.1.4: 514.084 (30.03.2023) 23:54
+[*] Fixed an issue where the bars could not be moved to the edge of the screen in some cases and where names could be wrongly formatted in non-english localizations. (Thx to Baertram for the Report.)

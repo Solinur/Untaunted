@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.1.3"
+Untaunted.version 	= "1.1.4"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -556,8 +556,8 @@ local defaults = {
 	["trackonlyplayer"]		= true,
 	["trackedabilities"] 	= {
 
-		{38541, true}, 		-- Taunt
-		{52788, true},		-- Taunt Immunity
+		{38541, true}, 	-- Taunt
+		{52788, true}, 	-- Taunt Immunity
 		{17906, false}, 	-- Crusher
 		{68588, false}, 	-- Minor Breach (PotL)
 		{62787, false}, 	-- Major Breach
@@ -779,8 +779,8 @@ local function MakeMenu()
 		local entry = {
 
 			type = "checkbox",
-			name = string.format(GetString(SI_UNTAUNTED_MENU_TRACK), name),
-			tooltip = string.format(GetString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP), name),
+			name = string.format(GetString(SI_UNTAUNTED_MENU_TRACK), zo_strformat(SI_ABILITY_NAME, name)),
+			tooltip = string.format(GetString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP), zo_strformat(SI_ABILITY_NAME, name)),
 			default = def.trackedabilities[i][2],
 			getFunc = function() return data[2] end,
 			setFunc = function(value)
@@ -836,6 +836,7 @@ local function MakeMenu()
 			NewItem("Unit"..i, i, 38254)
 
 		end
+
 	end
 
 	function Untaunted.SceneEnd(oldstate, newstate)
