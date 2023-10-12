@@ -14,7 +14,7 @@ local AbilityCopies = {}
 Untaunted = Untaunted or {}
 local Untaunted = Untaunted
 Untaunted.name 		= "Untaunted"
-Untaunted.version 	= "1.1.4"
+Untaunted.version 	= "1.1.5"
 
 local function Print(message, ...)
 	if Untaunted.debug==false then return end
@@ -148,9 +148,8 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 	local height = db.window.height
 	local width = db.window.width
 
-	local fontsize = height-(4*dx)
-
-	local font = string.format("%s|$(KB_%d)|%s", GetString(SI_UNTAUNTED_FONT), fontsize, 'soft-shadow-thin')
+	local fontsize = height*5/6+4-(4*dx)
+	local font = string.format("%s|%d|%s", GetString(SI_UNTAUNTED_FONT), fontsize, 'soft-shadow-thin')
 
 	item:SetHidden(false)
 	item:ClearAnchors()
@@ -176,7 +175,7 @@ local function NewItem(unitname, unitId, abilityId)  -- Adds an item to the taun
 
 	local timer = item:GetNamedChild("Timer")
 
-	timer:SetHeight(height)
+	timer:SetDimensions(height*1.4, height)
 	timer:SetFont(font)
 	timer:SetText("15.0")
 

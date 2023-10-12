@@ -24,11 +24,11 @@
 					<Dimensions x="198" y="22" />
 					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$(parent)Icon" offsetX="UNTAUNTED_UI_SCALE" offsetY="UNTAUNTED_UI_SCALE" />
 				</StatusBar>
-				<Label name="$(parent)Timer" horizontalAlignment="TEXT_ALIGN_Right" verticalAlignment="TEXT_ALIGN_CENTER" font="ZoFontGameMedium" text="15.0">
-					<Dimensions x="24" y="24" />
+				<Label name="$(parent)Timer" horizontalAlignment="RIGHT" verticalAlignment="CENTER" font="ZoFontGameMedium" text="15.0">
+					<Dimensions x="30" y="24" />
 					<Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="$(parent)Bg" offsetX="-4" offsetY="0" />
 				</Label>
-				<Label name="$(parent)Label" horizontalAlignment="TEXT_ALIGN_LEFT" verticalAlignment="TEXT_ALIGN_CENTER" font="ZoFontGameMedium" wrapMode="TEXT_WRAP_MODE_ELLIPSIS">
+				<Label name="$(parent)Label" horizontalAlignment="LEFT" verticalAlignment="CENTER" font="ZoFontGameMedium" wrapMode="TEXT_WRAP_MODE_ELLIPSIS">
 					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$(parent)Icon" offsetX="5" offsetY="0" />
 					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeTo="$(parent)Timer" offsetX="-4" offsetY="0" />
 				</Label>
