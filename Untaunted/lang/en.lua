@@ -29,7 +29,8 @@ local strings = {
 	SI_UNTAUNTED_MENU_TRACK_TOOLTIP = "Select to track %s", 	-- e.g. "Select to track Taunt"
 	SI_UNTAUNTED_MENU_CUSTOM = "Custom Abilities", 	-- "Custom Abilities"
 	SI_UNTAUNTED_MENU_CUSTOM_TOOLTIP = 'Allows you to add custom ability IDs as a comma separated list (e.g. "12345, 23456, 99999")', 	-- "Allows you to add custom ability IDs"
-
+	SI_UNTAUNTED_MENU_DISABLE_PVP = "Deactivate in PvP",
+	SI_UNTAUNTED_MENU_DISABLE_PVP_TOOLTIP = "Deactivates Untaunted in Cyrodil and Battlegrounds",
 	-- Keybinds --
 
 	SI_BINDING_NAME_UNTAUNTED_MARKERSIZE_TOGGLE = "Toggle size of Enemy Markers",

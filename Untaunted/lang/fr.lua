@@ -21,3 +21,5 @@ SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER, "Effets du personnage uniquemen
 SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP, "Suivre uniquement les effets de votre personnage",  1)	-- "Select to track only Player Effects"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK, "Suivre %s",  1)	-- e.g. "Track Taunt"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP, "Activer pour suivre %s",  1)	-- e.g. "Select to track Taunts"
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP, "Désactiver en JcJ", 1)
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP_TOOLTIP, "Désactive Untaunted en Cyrodil et sur les champs de bataille", 1)

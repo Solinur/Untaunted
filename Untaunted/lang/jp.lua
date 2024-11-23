@@ -26,3 +26,5 @@ SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER, "プレイヤーエフェクト
 SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP, "プレイヤーがキャストした効果（バフ）のみを監視する場合に選択します",  1)	-- "Select to track only Player Effects"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK, "%s を監視する",  1)	-- e.g. "Track Taunt"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP, "%s を監視する場合に選択します",  1)	-- e.g. "Select to track Taunts"
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP, "PvP でオフにする", 1)
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP_TOOLTIP, "Cyrodil とバトルグラウンドでは Untaunted をオフにする", 1)

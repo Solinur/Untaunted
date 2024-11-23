@@ -25,7 +25,11 @@ SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER, "Только свои эффе
 SafeAddString(SI_UNTAUNTED_MENU_TRACKONLYPLAYER_TOOLTIP, "Если включено, отслеживаются эффекты только от вашего персонажа", 1) --  "Select to track only Player Effects"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK, "Отслеживать «%s»", 1) --  e.g. "Track Taunt"
 SafeAddString(SI_UNTAUNTED_MENU_TRACK_TOOLTIP, "Если включено, будет отслеживаться %s", 1) --  e.g. "Select to track Taunt"
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP, "Отключение в PvP", 1)
+SafeAddString(SI_UNTAUNTED_MENU_DISABLE_PVP_TOOLTIP, "Выключает Untaunted в Сиродил и на полях сражений", 1)
 
 -- Keybinds --
 
 SafeAddString(SI_BINDING_NAME_UNTAUNTED_MARKERSIZE_TOGGLE, "Переключить размер маркеров врагов", 1) --  "Toggle size of Enemy Markers"
+
+

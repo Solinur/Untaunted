@@ -447,6 +447,7 @@ local defaults = {
 	["bardirection"]     = false, --false=to the left
 	["accountwide"]      = true,
 	["trackonlyplayer"]  = true,
+	["disablePvP"]       = false,
 	["trackedabilities"] = {
 		{ 38541,  true }, -- Taunt
 		{ 52788,  true }, -- Taunt Immunity
@@ -470,25 +471,16 @@ local defaults = {
 
 }
 
-AbilityCopies = {
-	-- Minor Vulnerability
-	[81519] = { 51434, 61782, 68359, 79715, 79717, 79720, 79723, 79726, 79843, 79844, 79845, 79846, 117025, 118613, 120030, 124803, 124804, 124806, 130155, 130168, 130173, 130809 },
-	-- Minor Lifesteal
-	[80020] = { 86304, 86305, 86307, 88565, 88575, 88606, 92653, 121634, 148043 },
-	-- Minor Fracture
-	[64144] = { 79090, 79091, 79309, 79311, 60416, 84358 },
-	-- Minor Breach
-	[68588] = { 38688, 61742, 83031, 84358, 108825, 120019, 126685, 146908 },
-	-- Off Balance
-	[62988] = { 62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014 },
-	-- Major Breach
-	[62787] = { 28307, 33363, 34386, 36972, 36980, 40254, 48946, 53881, 61743, 62474, 62485, 62775, 78609, 85362, 91175, 91200, 100988, 108951, 111788, 117818, 118438, 120010 },
-	-- Major Vulnerability
-	[122389] = { 106754, 106755, 106758, 106760, 106762, 122177, 122397 },
-	-- Minor Magickasteal
-	[39100] = { 26220, 26809, 88401, 88402, 88576, 125316, 148044 },
-	-- Taunt
-	[38541] = { 38254 },
+AbilityCopies = {	
+	[81519] = { 51434, 61782, 68359, 79715, 79717, 79720, 79723, 79726, 79843, 79844, 79845, 79846, 117025, 118613, 120030, 124803, 124804, 124806, 130155, 130168, 130173, 130809 }, -- Minor Vulnerability
+	[80020] = { 86304, 86305, 86307, 88565, 88575, 88606, 92653, 121634, 148043 }, -- Minor Lifesteal
+	[64144] = { 79090, 79091, 79309, 79311, 60416, 84358 }, -- Minor Fracture
+	[68588] = { 38688, 61742, 83031, 84358, 108825, 120019, 126685, 146908 }, -- Minor Breach	
+	[62988] = { 62968, 39077, 130145, 130129, 130139, 45902, 25256, 34733, 34737, 23808, 20806, 34117, 125750, 131562, 45834, 137257, 137312, 120014 }, -- Off Balance
+	[62787] = { 28307, 33363, 34386, 36972, 36980, 40254, 48946, 53881, 61743, 62474, 62485, 62775, 78609, 85362, 91175, 91200, 100988, 108951, 111788, 117818, 118438, 120010 }, -- Major Breach
+	[122389] = { 106754, 106755, 106758, 106760, 106762, 122177, 122397 }, -- Major Vulnerability
+	[39100] = { 26220, 26809, 88401, 88402, 88576, 125316, 148044 }, -- Minor Magickasteal
+	[38541] = { 38254 }, -- Taunt
 }
 
 local function SetMarker(size)
@@ -527,7 +519,6 @@ local function MakeMenu()
 		version = Untaunted.version or "",
 		registerForRefresh = false,
 	}
-
 	addonpanel = menu:RegisterAddonPanel("Untaunted_Options", panel)
 
 	--this adds entries in the addon menu
@@ -598,9 +589,7 @@ local function MakeMenu()
 			setFunc = function(value)
 				db.growthdirection = value;
 				GetGrowthAnchor()
-
 				Untaunted.ShowItems(addonpanel)
-
 				SavePosition(Untaunted_TLW)
 			end,
 		},
@@ -613,6 +602,15 @@ local function MakeMenu()
 			setFunc = function(value)
 				db.bardirection = value
 			end,
+		},
+		{
+			type = "checkbox",
+			name = GetString(SI_UNTAUNTED_MENU_DISABLE_PVP),
+			tooltip = GetString(SI_UNTAUNTED_MENU_DISABLE_PVP_TOOLTIP),
+			default = def.disablePvP,
+			getFunc = function() return db.disablePvP end,
+			setFunc = function(value) db.disablePvP = value end,
+			RegisterAbilities()
 		},
 		{
 			type = "checkbox",
