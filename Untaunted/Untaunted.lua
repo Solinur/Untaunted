@@ -279,14 +279,43 @@ local function OnTargetChange()
 	end
 end
 
+local function validateChangeType(changeType)
+	if changeType==EFFECT_RESULT_GAINED or changeType==EFFECT_RESULT_FADED or changeType==EFFECT_RESULT_UPDATED then return true end
+	return false
+end
+
+local function validateEffectType(effectType)
+	if effectType==BUFF_EFFECT_TYPE_DEBUFF or effectType==BUFF_EFFECT_TYPE_BUFF then return true end
+	return false
+end
+
+local function validateSourceType(sourceType)
+	if sourceType==COMBAT_UNIT_TYPE_PLAYER or sourceType==COMBAT_UNIT_TYPE_PLAYER_PET or sourceType==COMBAT_UNIT_TYPE_GROUP then return true end
+	return false
+end
+
+local nonPlayerSourceAbilities = {
+	[88401] = true, -- Minor Magickasteal
+	[120014] = true, -- Off Balance
+	[134599] = true, -- Off Balance Immunity
+}
+
+local function validateOnTauntInputs(changeType, effectType, sourceType, abilityId)
+	local validChangeType = validateChangeType(changeType)
+	local validEffectType = validateEffectType(effectType)
+	local validSourceType = validateSourceType(sourceType)
+	local isNonPlayerSourceAbility = nonPlayerSourceAbilities[abilityId] == true
+
+	if validChangeType and validEffectType and (validSourceType or isNonPlayerSourceAbility) then return true end
+
+	local abilityName = GetAbilityName(abilityId, "player")
+	Print("[Untaunted] onTaunt validation failed: changeType: %d, effectType: %d, sourceType: %d, ability: %s (%d)", changeType, effectType, sourceType, abilityName, abilityId)
+	return false
+end
+
 -- EVENT_EFFECT_CHANGED (eventCode, changeType, effectSlot, effectName, unitTag, beginTime, endTime, stackCount, iconName, buffType, effectType, abilityType, statusEffectType, unitName, unitId, abilityId, sourceType)
 local function onTaunt( _,  changeType,  _,  _,  _, beginTime, endTime,  _,  _,  _,  effectType, _,  _,  unitName, unitId, abilityId, sourceType)
-
-	--Print("Changetype: %s, Effecttype: %s, Times: %.3f - %.3f Ability: %s (%s)", changeType, effectType, beginTime, endTime, GetAbilityName(abilityId), unitName)
-	--Print("Eval: %s and %s",tostring(changeType~=1 and changeType~=2 and changeType~=3),tostring(effectType~=2 and effectType~=1))
-
-	if (changeType~=EFFECT_RESULT_GAINED and changeType~=EFFECT_RESULT_FADED and changeType~=EFFECT_RESULT_UPDATED and effectType~=BUFF_EFFECT_TYPE_DEBUFF and effectType~=BUFF_EFFECT_TYPE_BUFF) or (sourceType~=COMBAT_UNIT_TYPE_PLAYER and sourceType ~=COMBAT_UNIT_TYPE_PLAYER_PET and sourceType~=COMBAT_UNIT_TYPE_GROUP and abilityId~=134599 and abilityId~=120014 and abilityId~=88401) then return end
-	if changeType == 1 and abilityId == 88401 then return end
+	if not validateOnTauntInputs(changeType, effectType, sourceType, abilityId) then return end
 
 	local idkey = ZO_CachedStrFormat("<<1>>,<<2>>", unitId, abilityId)
 
